@@ -46,6 +46,31 @@
     --muted: #7A8C89;
     --white: #FDFCFB;
     --coral: #E07060;
+
+    --green: #2e7d32;
+    --green-light: #eef5ef;
+    --amber: #f29448;
+    --amber-light: #fef3eb;
+    --red: #df6868;
+    --red-light: #fbeeee;
+    --blue: #3849ab;
+    --blue-light: #9ec5ec;
+
+    --deep-neptune: oklch(28.4% 0.082 258.3);
+    --ocean-core: oklch(38.9% 0.124 260.1);
+    --horizon-blue: oklch(53.8% 0.148 258.7);
+    --atmospheric: oklch(66.7% 0.119 232.4);
+
+    --void: oklch(15.2% 0.040 258.0);
+    --abyss: oklch(21.8% 0.051 255.4);
+    --deep: oklch(31.0% 0.067 254.8);
+    --dusk: oklch(44.3% 0.060 239.3);
+    --mist: oklch(92.0% 0.030 225.6);
+
+    --storm-teal: oklch(60.2% 0.110 183.6);
+    --ice-highlight: oklch(84.5% 0.065 220.8);
+    --aurora-violet: oklch(38.0% 0.158 283.7);
+    --frost-white: oklch(96.2% 0.018 237.5);
 }
 
 @theme inline {
@@ -96,6 +121,31 @@
     --color-muted: var(--muted);
     --color-white: var(--white);
     --color-coral: var(--coral);
+
+    --color-green: var(--green);
+    --color-green-light: var(--green-light);
+    --color-amber: var(--amber);
+    --color-amber-light: var(--amber-light);
+    --color-red: var(--red);
+    --color-red-light: var(--red-light);
+    --color-blue: var(--blue);
+    --color-blue-light: var(--blue-light);
+
+    --color-deep-neptune: var(--deep-neptune);
+    --color-ocean-core: var(--ocean-core);
+    --color-horizon-blue: var(--horizon-blue);  
+    --color-atmospheric: var(--atmospheric);
+
+    --color-void: var(--void);
+    --color-abyss: var(--abyss);
+    --color-deep: var(--deep);
+    --color-dusk: var(--dusk);
+    --color-mist: var(--mist);
+
+    --color-storm-teal: var(--storm-teal);
+    --color-ice-highlight: var(--ice-highlight);
+    --color-aurora-violet: var(--aurora-violet);
+    --color-frost-white: var(--frost-white);
 }
 
 @layer base {
@@ -104,5 +154,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
   }
 }

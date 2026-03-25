@@ -2,10 +2,9 @@
     import GlobalSearch from "./global-search.svelte";
 </script>
 
-<div class="app-header">
+<div class="app-header grid grid-cols-[160px_1fr_160px] justify-between items-center px-4 py-1 border-teal-light border-b">
     <a href="#" class="logo">Flow<span>ly</span></a>
-    <!-- <input type="text" class="global-search"> -->
-    <div class="main-menu">
+    <div class="flex items-center justify-center gap-12">
         <GlobalSearch />
         <!-- <a href="#">Calendar</a>
         <a href="#">Clients</a>
@@ -17,17 +16,17 @@
 </div>
 
 <style>
-.app-header {
-    display: grid;
+/* .app-header { */
+    /* display: grid;
     grid-template-columns: 160px 1fr 160px;
     justify-content: space-between;
-    align-items: center;
-    /* padding: 20px 48px; */
-    padding: 0.25rem 1rem;
+    align-items: center; */
+    /* padding: 20px 48px; ----- */
+    /* padding: 0.25rem 1rem;
     background: rgba(253,252,251,0.88);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(58,155,142,0.12);
-}
+    backdrop-filter: blur(12px); */
+    /* border-bottom: 1px solid rgba(58,155,142,0.12); */
+/* } */
 .logo {
     font-family: 'Fraunces', serif;
     font-weight: 600;
@@ -42,13 +41,12 @@
     padding: 0.25rem 1.25rem;
     width: 300px;
 }
-.main-menu {
-    /* border: 1px solid red; */
+/* .main-menu {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 3rem;
-}
+} */
 .nav-cta {
     background: var(--teal);
     color: white;

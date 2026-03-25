@@ -6,7 +6,7 @@
     };
 </script>
 
-<main class="p-9">
+<main class="">
     <Button.Root
         onclick={clickButton}
         class="text-sm cursor-pointer py-2 px-4 border-none rounded-sm shadow hover:bg-sand/50 transition-all duration-150 ease-in-out">

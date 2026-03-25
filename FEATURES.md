@@ -1,0 +1,174 @@
+Dashboard
+
+Calendar
+- Views
+    - Daily
+    - Weekly
+    - Monthly
+- Navigation
+    - Prev
+    - Next
+    - Today
+- Service Location
+- Staff
+    - Select staff
+
+Customers
+- List
+- Search
+- Add
+- View
+    - Details
+    - Appointments
+        - Add rating to list (if present)
+    - Sales/Invoices
+    - Reports
+    - Promotions
+    - Logs (System notes)
+
+Setup
+- Company
+    - Business Name/Info
+        - Business Name
+        - Website
+        - Phone
+        - Owner Name (First, Last)
+        - Type of Business (Hair & Beauty, Tattoo, Massage, etc)
+        - Social Media
+    - Invoicing Settings
+        - Payment term
+        - Invoice title
+        - Business registration number
+        - Business registration type
+        - Auto-numbering/prefixing
+    - Service Locations/Branches
+        - List
+        - Search
+        - Add
+        - View
+            - Name
+            - Phone
+            - Address
+            - Suburb
+            - City
+            - State
+            - Postal
+            - Hours (per day)
+            - Holidays
+    - Services
+        - Categories
+            - List
+            - Add
+            - Delete
+            - Edit
+        - List
+            - Filter by category
+        - Search
+        - Add
+        - View
+            - Name
+            - Category
+            - Description
+            - Price ("Varies", "Fixed")
+            - Duration
+            - Padding/processing times (before and after)
+            - Tax
+            - Staff
+            - Resources (sublist)
+            - Availability
+                - Public
+                - VIP
+                - Online
+    - Staff
+        - Tiers (Junior, Senior, etc)
+        - List
+            - Filter by tier
+        - Search
+        - Add
+        - View
+            - Name (First, Last, Nick)
+            - Title
+            - Notes
+            - Photo
+            - Phone
+            - Email
+            - Pronouns
+            - Address
+            - City
+            - Locations
+            - Hours
+            - Price tier
+            - Services
+    - Resources
+        - List
+        - Search
+        - Add
+        - View
+            - Name
+            - Brand
+            - Location (1 only)
+            - Services (multiple)
+    - Calendar Settings
+        - Display Settings
+            - First day of week
+            - Start/end of shift
+            - Show slot padding times
+        - Appointment Settings
+            - Default status (Pencilled in, confirmed, etc)
+            - Preserve padding times between multiple services
+        - Summary
+            - Receive an email summary of daily appointments
+        - Cancellation Reasons
+            - Did not specify
+            - Other commitments
+            - Not necessary
+            - Did not show
+            - Appointment made in error
+            - Other
+            - Reschedule
+        - Appointment Status
+            - Not started
+            - Arrived
+            - Started
+            - Completed
+            - Did not show
+            - On hold
+        - Waitlist
+            - Enable waitlists
+            - Keep-waitlist duration
+            - Auto-notify waitlisted clients of cancellations/updates
+
+- Inventory
+    - List
+    - Search
+    - Add
+    - View
+        - Name
+        - Brand
+        - Location (1 only)
+        - Services (multiple)
+
+- Vendors
+    - List
+    - Search
+    - Add
+    - View
+        - Name
+        - Phone
+        - Website
+        - Contacts (list)
+
+- Promotions
+    - Promo Codes
+    - Discounts
+    - Packages
+    - Gift vouchers
+    - Rewards
+
+- Messaging
+
+- Administration
+    - Roles
+    - Users
+
+- Integrations
