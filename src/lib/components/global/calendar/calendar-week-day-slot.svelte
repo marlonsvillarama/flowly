@@ -10,6 +10,7 @@
         Dialog,
         Separator
     } from "bits-ui";
+    import AppointmentPopup from '../appointment/appointment-popup.svelte';
 
     let {
         data,
@@ -31,13 +32,11 @@
         />
         <Dialog.Content
             class={twMerge(
-                "rounded-sm bg-background shadow-popover outline-hidden fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%] border",
+                "rounded-sm bg-background shadow-popover outline-hidden fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%] border max-h-[80%] overflow-y-hidden",
                 "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
             )}
         >
-            <div class="grid w-200">
-                {data.text}; start =    {!!data.start}; end = {!!data.end}
-            </div>
+            <AppointmentPopup {data} />
         </Dialog.Content>
     </Dialog.Portal>
 </Dialog.Root>

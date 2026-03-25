@@ -4,8 +4,9 @@
 	let { children } = $props();
 </script>
 
-<div class="border-transparent border h-full grid grid-cols-[auto_1fr] gap-4">
-    <CalendarSidebar />
+<!-- <div class="border-transparent border h-full grid grid-cols-[auto_1fr] gap-4"> -->
+<div class="border-transparent border h-full w-full gap-4">
+    <!-- <CalendarSidebar /> -->
 
     {@render children()}
 </div>

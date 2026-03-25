@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 :root {
+    --font-fraunces: 'Fraunces', serif;
+    --font-default: 'Inter', sans-serif;
+
     --radius: 0.625rem;
     --background: oklch(1 0 0);
     --foreground: oklch(0.129 0.042 264.695);
@@ -74,6 +77,9 @@
 }
 
 @theme inline {
+    --font-logo: var(--font-serif);
+    --font-default: var(--font-default);
+
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
@@ -154,7 +160,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-default);
     font-size: 14px;
   }
 }
