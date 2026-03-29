@@ -1,5 +1,5 @@
 <script>
-    import { Popover } from "bits-ui";
+    import { Button, Popover } from "bits-ui";
     import Stepper from "./stepper.svelte";
     import { bookingFormData } from "@/store/booking-form.svelte";
 </script>
@@ -18,6 +18,10 @@
                     Hello, there!
                 {/if}
             </span>
+            <div class="flex items-center gap-4">
+                <Button.Root class="cursor-pointer px-4 py-2 border-2 border-teal-light rounded-4xl text-sm hover:bg-teal-light/50">
+                    Add products
+                </Button.Root>
             <Popover.Root>
                 <Popover.Trigger class="flex items-center gap-2 cursor-pointer py-1 px-4 rounded-4xl bg-teal hover:bg-teal-dark text-background transition-all duration-150">
                     <!-- <span>View your cart</span> -->
@@ -27,6 +31,7 @@
                     <!-- </div> -->
                 </Popover.Trigger>
             </Popover.Root>
+            </div>
         </div>
     </div>
 </div>

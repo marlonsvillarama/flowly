@@ -6,6 +6,7 @@
     let steps = [
         { id: 'services', label: 'Services' },
         { id: 'time', label: 'Calendar' },
+        // { id: 'products', label: 'Products' },
         { id: 'confirm', label: 'Confirm' }
     ];
 </script>
