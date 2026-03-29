@@ -1,5 +1,7 @@
 <script>
-    import { CalendarStore } from "@/store/global-store.svelte";
+    import {
+        CalendarStore
+    } from "@/store/global-store.svelte";
     import {
         Dialog,
         Separator
@@ -9,7 +11,9 @@
     let {
         date = new Date()
     } = $props();
+
     let calendarStore = CalendarStore();
+    let now = new Date();
 
     let weekRange = $derived.by(() => {
         let arr = [];

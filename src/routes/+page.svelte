@@ -1,18 +1,18 @@
 <script>
     import { Button } from "bits-ui";
-
-    const clickButton = () => {
-        alert('clicked');
-    };
 </script>
 
-<main class="">
+<div class="p-5 flex gap-3 bg-horizon-blue/10">
     <Button.Root
-        onclick={clickButton}
-        class="text-sm cursor-pointer py-2 px-4 border-none rounded-sm shadow hover:bg-sand/50 transition-all duration-150 ease-in-out">
-        test
+        class="py-1 px-3 text-sm text-foreground bg-white border rounded-sm cursor-pointer hover:bg-muted/10 hover:shadow-sm"
+        onclick={() => window.location = '/app'}
+    >
+        Application
     </Button.Root>
-</main>
-
-<style>
-</style>
+    <Button.Root
+        class="py-1 px-3 text-sm text-foreground bg-white border rounded-sm cursor-pointer hover:bg-muted/10 hover:shadow-sm"
+        onclick={() => window.location = '/login'}
+    >
+        Booking Form
+    </Button.Root>
+</div>

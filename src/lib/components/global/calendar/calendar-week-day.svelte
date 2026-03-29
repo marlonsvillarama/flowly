@@ -20,6 +20,7 @@
     
     let calendarStore = CalendarStore();
 
+    let now = new Date();
     let timeSlots = $derived.by(() => {
         let dayStart = new Date(
             date.getFullYear(),
@@ -57,6 +58,7 @@
                 disabled: dt < shiftStart || dt >= shiftEnd,
                 end: dt === shiftEnd,
                 start: dt === shiftStart,
+                today: DateTimeStore.toDateString(dt) === DateTimeStore.toDateString(now),
                 value: new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), dt.getHours(), dt.getMinutes())
             }
             obj.text = `${DateTimeStore.toDateString(obj.value)} ${DateTimeStore.toTimeString(obj.value)}`;
