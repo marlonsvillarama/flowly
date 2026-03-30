@@ -52,7 +52,7 @@
                         <Avatar.Fallback class="border-muted border">AA</Avatar.Fallback>
                     </div>
                 </Avatar.Root>
-                <span class="text-sm">Avatar Aang</span>
+                <span class="text-sm">Aang</span>
             </div>
             </Dialog.Trigger>
             <Dialog.Portal>
@@ -75,13 +75,13 @@
     
     <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
-            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-muted/10 hover:bg-muted/30">29</Button.Root>
-            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-teal-dark text-background">30</Button.Root>
-            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-muted/10 hover:bg-muted/30">31</Button.Root>
-            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-muted/10 hover:bg-muted/30">1</Button.Root>
-            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-muted/10 hover:bg-muted/30">2</Button.Root>
-            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-muted/10 hover:bg-muted/30">3</Button.Root>
-            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-muted/10 hover:bg-muted/30">4</Button.Root>
+            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-muted/10 hover:bg-muted/30 transition-all duration-150">29</Button.Root>
+            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-teal-dark text-background transition-all duration-150">30</Button.Root>
+            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-muted/10 hover:bg-muted/30 transition-all duration-150">31</Button.Root>
+            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-muted/10 hover:bg-muted/30 transition-all duration-150">1</Button.Root>
+            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-muted/10 hover:bg-muted/30 transition-all duration-150">2</Button.Root>
+            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-muted/10 hover:bg-muted/30 transition-all duration-150">3</Button.Root>
+            <Button.Root class="h-10 w-10 text-lg text-center rounded-full cursor-pointer bg-muted/10 hover:bg-muted/30 transition-all duration-150">4</Button.Root>
         </div>
 
         <div class="flex items-center gap-2">

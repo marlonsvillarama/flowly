@@ -1,4 +1,5 @@
 <script>
+    import { twMerge } from "tailwind-merge";
     import { Button } from "bits-ui";
     import { bookingFormData } from "@/store/booking-form.svelte";
     import { servicesData } from "@/store/services.svelte";
@@ -53,7 +54,10 @@
     });
 </script>
 
-<div class="grid rounded-sm border border-teal-dark py-3 px-4">
+<div class={twMerge(
+    "grid rounded-sm border-3 py-3 px-4",
+    bookingFormData.activeStep === 1 ? 'border-teal/80' : 'border-border/40'
+)}>
     <div class="flex items-center justify-between">
         {#if bookingFormData.date && bookingFormData.timeStart && bookingFormData.timeEnd}
             <div class="flex items-center gap-2">

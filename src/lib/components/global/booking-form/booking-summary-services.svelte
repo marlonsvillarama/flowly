@@ -2,12 +2,16 @@
     import { Button } from "bits-ui";
     import { bookingFormData } from "@/store/booking-form.svelte";
     import { categoriesData, servicesData } from "@/store/services.svelte";
+    import { twMerge } from "tailwind-merge";
 
     let cartItems = $derived(servicesData.filter(d => bookingFormData.cart.items.indexOf(d.id) >= 0));
     let cartTotal = $derived(cartItems.reduce((sum, next) => sum + next.price, 0));
 </script>
 
-<div class="grid rounded-sm border border-teal-dark py-3 px-4">
+<div class={twMerge(
+    "grid rounded-sm border-3 py-3 px-4",
+    bookingFormData.activeStep === 0 ? 'border-teal/80' : 'border-border/40'
+)}>
     <div class="flex items-center justify-between">
         <span class="font-normal text-foreground/80">
             You selected {bookingFormData.cart.items.length} service{bookingFormData.cart.items.length === 1 ? '' : 's'}

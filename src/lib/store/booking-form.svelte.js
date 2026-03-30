@@ -20,7 +20,7 @@ export const bookingFormData = $state({
         { id: 'services', label: 'Services' },
         { id: 'time', label: 'Calendar' },
         { id: 'products', label: 'Products' },
-        { id: 'confirm', label: 'Confirm' }
+        // { id: 'submit', label: 'Submit' }
     ],
     timeEnd: '1445',
     timeStart: '1030'

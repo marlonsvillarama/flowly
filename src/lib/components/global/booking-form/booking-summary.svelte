@@ -20,22 +20,6 @@
 
         <BookingSummaryProducts />
 
-        <!-- <div class="grid rounded-sm border border-teal-dark py-3 px-4">
-            <div class="flex items-center justify-between">
-                {#if bookingFormData.cart.items.length > 0}
-                    <span class="font-bold text-foreground/80">Appointment Date/Time</span>
-                {:else}
-                    <span class="font-bold text-foreground/80">Appointment Date/Time</span>
-                {/if}
-                <Button.Root
-                    class="text-xs font-medium text-background bg-teal-dark/80 hover:teal-dark transition-all duration-150 cursor-pointer rounded-3xl px-4 py-1"
-                    onclick={() => bookingFormData.activeStep = 0}
-                >
-                    Update
-                </Button.Root>
-            </div>
-        </div> -->
-
         {#if (bookingFormData.cart.items.length > 0 && bookingFormData.date && bookingFormData.timeStart) || bookingFormData.cart.products.length > 0}
         <Button.Root
             class="grid items-center py-3 px-15 bg-teal/90 rounded-4xl cursor-pointer hover:bg-storm-teal duration-150 ease-in-out font-semibold text-base text-background"
