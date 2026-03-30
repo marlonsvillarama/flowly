@@ -15,9 +15,9 @@
 <Button.Root
     class={twMerge(
         "grid rounded-sm border-3 py-3 px-4 cursor-pointer",
-        bookingFormData.activeStep === 2 ? 'border-teal/80' : 'border-border/40 hover:border-teal-light/80'
+        bookingFormData.activeStep === 1 ? 'border-teal/80' : 'border-border/40 hover:border-teal-light/80'
     )}
-    onclick={() => bookingFormData.activeStep = 2}
+    onclick={() => bookingFormData.activeStep = 1}
 >
     <div class="flex items-center justify-between">
         <span class="font-normal text-foreground/80">

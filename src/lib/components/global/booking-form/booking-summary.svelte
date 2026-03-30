@@ -16,7 +16,7 @@
     <div class="grid gap-4 w-full">
         <BookingSummaryServices />
 
-        <BookingSummaryDatetime />
+        <!-- <BookingSummaryDatetime /> -->
 
         <BookingSummaryProducts />
 

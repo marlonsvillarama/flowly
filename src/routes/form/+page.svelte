@@ -13,9 +13,9 @@
 
 {#if bookingFormData.activeStep === 0}
     <ServiceList />
+<!-- {:else if bookingFormData.activeStep === 1} -->
+    <!-- <BookingCalendar /> -->
 {:else if bookingFormData.activeStep === 1}
-    <BookingCalendar />
-{:else if bookingFormData.activeStep === 2}
     <ProductList />
 {:else if bookingFormData.activeStep === 3}
     step 3

@@ -20,8 +20,8 @@
     {#each bookingFormData.steps as step, i}
         <Button.Root
             class={twMerge(
-                "text-sm cursor-pointer border-b-3 border-transparent",
-                i > bookingFormData.activeStep ? 'text-muted/60' :
+                "text-sm font-semibold cursor-pointer border-b-3 border-transparent",
+                i > bookingFormData.activeStep ? 'text-foreground/60' :
                     (i === bookingFormData.activeStep ? 'text-foreground/80 border-teal' : 'text-foreground/60')
             )}
             onclick={() => gotoStep(step.id)}

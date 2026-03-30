@@ -15,13 +15,16 @@ export const bookingFormData = $state({
         items: [],
         products: []
     },
-    date: '2026-04-02',
+    date: '',
     steps: [
         { id: 'services', label: 'Services' },
-        { id: 'time', label: 'Calendar' },
+        // { id: 'time', label: 'Calendar' },
         { id: 'products', label: 'Products' },
+        { id: 'packages', label: 'Packages' },
+        { id: 'vouchers', label: 'Vouchers' },
+        // { id: 'client', label: 'Your Info' },
         // { id: 'submit', label: 'Submit' }
     ],
     timeEnd: '1445',
-    timeStart: '1030'
+    timeStart: ''
 });
