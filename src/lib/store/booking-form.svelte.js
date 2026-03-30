@@ -1,4 +1,5 @@
 export const bookingFormData = $state({
+    activeCategory: '',
     activeStep: 0,
     company: {
         id: 1,
@@ -11,6 +12,16 @@ export const bookingFormData = $state({
         }
     },
     cart: {
-        items: []
-    }
+        items: [],
+        products: []
+    },
+    date: '2026-04-02',
+    steps: [
+        { id: 'services', label: 'Services' },
+        { id: 'time', label: 'Calendar' },
+        { id: 'products', label: 'Products' },
+        { id: 'confirm', label: 'Confirm' }
+    ],
+    timeEnd: '1445',
+    timeStart: '1030'
 });

@@ -5,10 +5,6 @@
     import { bookingFormData } from "@/store/booking-form.svelte";
     import { categoriesData, servicesData } from "@/store/services.svelte";
 
-    let {
-        children
-    } = $props();
-    
     let availableCategories = $derived.by(() => {
         let list = categoriesData.filter(c => servicesData.filter(s => s.category === c.id).length > 0);
         return list.map(c => {

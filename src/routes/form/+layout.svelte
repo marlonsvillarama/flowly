@@ -1,16 +1,24 @@
 <script>
     import FormHeader from "@/components/global/booking-form/form-header.svelte";
+    import FormStepHeader from "@/components/global/booking-form/form-step-header.svelte";
+    import BookingSummary from "@/components/global/booking-form/booking-summary.svelte";
+
     let { children } = $props();
 </script>
 
-<div class="">
-    <FormHeader />
-    <div class="w-[95%] mx-auto max-w-300 h-screen pt-29 grid grid-rows-[auto_1fr] gap-2">
-        <!-- <div class="title text-3xl">Booking Form</div>
-        <div class="content overflow-y-auto border border-red">
-            <div class="h-[1000px]"> -->
-            {@render children?.()}
-            <!-- </div> -->
-        <!-- </div> -->
+<div class="grid grid-rows-[auto_1fr] h-screen gap-0">
+    <div class="border-0 border-red">
+        <FormHeader />
+        <FormStepHeader />
+    </div>
+    <div class="w-[95%] mb-8 mx-auto max-w-300 border-0 border-green overflow-y-auto">
+        <div class="grid grid-cols-[3fr_2fr] gap-6 w-full h-full">
+            <div class="content overflow-y-auto border-r border-gray pr-8">
+                {@render children?.()}
+            </div>
+            <div class="flex">
+                <BookingSummary />
+            </div>
+        </div>
     </div>
 </div>

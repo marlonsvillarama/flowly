@@ -3,28 +3,35 @@
     import { Button, Separator, Tabs } from "bits-ui";
     import { bookingFormData } from "@/store/booking-form.svelte";
 
-    let steps = [
-        { id: 'services', label: 'Services' },
-        { id: 'time', label: 'Calendar' },
-        // { id: 'products', label: 'Products' },
-        { id: 'confirm', label: 'Confirm' }
-    ];
+    // let steps = [
+    //     { id: 'services', label: 'Services' },
+    //     { id: 'time', label: 'Calendar' },
+    //     { id: 'confirm', label: 'Confirm' }
+    // ];
+
+    console.log('bookingFormData.activeStep', bookingFormData.activeStep);
+
+    const gotoStep = (id) => {
+        bookingFormData.activeStep = bookingFormData.steps.map(d => d.id).indexOf(id) || 0;
+    };
 </script>
 
 <div class="flex items-center gap-5">
-    {#each steps as step, i}
+    {#each bookingFormData.steps as step, i}
         <Button.Root
             class={twMerge(
-                "text-md font-medium cursor-pointer",
-                i > bookingFormData.activeStep ? 'text-muted/80' : 'text-foreground/80 font-semibold'
+                "text-sm cursor-pointer border-b-3 border-transparent",
+                i > bookingFormData.activeStep ? 'text-muted/60' :
+                    (i === bookingFormData.activeStep ? 'text-foreground/80 border-teal' : 'text-foreground/60')
             )}
+            onclick={() => gotoStep(step.id)}
         >
             <div class="flex gap-2 items-center">
                 {step.label}
             </div>
         </Button.Root>
 
-        {#if i < steps.length - 1}
+        {#if i < bookingFormData.steps.length - 1}
             <i class="ph ph-caret-right"></i>
         {/if}
     {/each}
