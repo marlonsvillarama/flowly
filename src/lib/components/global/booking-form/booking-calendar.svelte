@@ -43,17 +43,17 @@
 
         <Dialog.Root>
             <Dialog.Trigger>
-            <div class="flex items-center gap-2 h-9 pr-4 shadow-sm rounded-full bg-teal-light cursor-pointer">
-                <Avatar.Root
-                    class="data-[status=loaded]:border-none bg-muted text-foreground/80 h-9 w-9 rounded-full font-medium data-[status=loading]:border-transparent"
-                >
-                    <div class="flex h-full w-full items-center justify-center overflow-hidden rounded-full">
-                        <Avatar.Image src={Aang} alt="avatar-aang" />
-                        <Avatar.Fallback class="border-muted border">AA</Avatar.Fallback>
-                    </div>
-                </Avatar.Root>
-                <span class="text-sm">Aang</span>
-            </div>
+                <div class="flex items-center gap-2 h-9 pr-4 shadow-sm rounded-full bg-teal-light cursor-pointer">
+                    <Avatar.Root
+                        class="data-[status=loaded]:border-none bg-muted text-foreground/80 h-9 w-9 rounded-full font-medium data-[status=loading]:border-transparent"
+                    >
+                        <div class="flex h-full w-full items-center justify-center overflow-hidden rounded-full">
+                            <Avatar.Image src={Aang} alt="avatar-aang" />
+                            <Avatar.Fallback class="border-muted border">AA</Avatar.Fallback>
+                        </div>
+                    </Avatar.Root>
+                    <span class="text-sm">Aang</span>
+                </div>
             </Dialog.Trigger>
             <Dialog.Portal>
                 <Dialog.Overlay

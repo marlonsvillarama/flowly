@@ -8,7 +8,7 @@
     }
 </script>
 
-<div class="inner mb-8 w-[95%] mx-auto max-w-300 flex items-center justify-between">
+<div class="inner mb-4 w-[95%] mx-auto max-w-300 flex items-center justify-between">
     <Stepper />
     <!-- <div class="flex items-center gap-2"> -->
         <!-- {#if bookingFormData.activeStep > 0}
