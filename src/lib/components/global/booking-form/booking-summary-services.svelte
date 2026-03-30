@@ -8,22 +8,22 @@
     let cartTotal = $derived(cartItems.reduce((sum, next) => sum + next.price, 0));
 </script>
 
-<div class={twMerge(
-    "grid rounded-sm border-3 py-3 px-4",
-    bookingFormData.activeStep === 0 ? 'border-teal/80' : 'border-border/40'
-)}>
+<Button.Root
+    class={twMerge(
+        "grid rounded-sm border-3 py-3 px-4 cursor-pointer",
+        bookingFormData.activeStep === 0 ? 'border-teal/80' : 'border-border/40 hover:border-teal-light/80'
+    )}
+    onclick={() => bookingFormData.activeStep = 0}
+>
     <div class="flex items-center justify-between">
         <span class="font-normal text-foreground/80">
             You selected {bookingFormData.cart.items.length} service{bookingFormData.cart.items.length === 1 ? '' : 's'}
         </span>
-        <Button.Root
-            class="text-xs font-medium text-background bg-teal-dark/80 hover:teal-dark transition-all duration-150 cursor-pointer rounded-3xl px-4 py-1"
-            onclick={() => bookingFormData.activeStep = 0}
-        >
+        <span class="text-xs font-medium text-background bg-teal-dark/80 hover:teal-dark transition-all duration-150 rounded-3xl px-4 py-1">
             Select
-        </Button.Root>
+        </span>
     </div>
     {#if cartTotal > 0}
-        <span class="text-muted font-normal">Subtotal: <span class="text-foreground/80 font-bold py-0.75">${cartTotal}</span></span>
+        <span class="text-muted font-normal text-left">Subtotal: <span class="text-foreground/80 font-bold py-0.75">${cartTotal}</span></span>
     {/if}
-</div>
+</Button.Root>

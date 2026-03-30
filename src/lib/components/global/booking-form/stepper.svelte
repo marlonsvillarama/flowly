@@ -32,7 +32,7 @@
         </Button.Root>
 
         {#if i < bookingFormData.steps.length - 1}
-            <i class="ph-bold ph-caret-right border-b-4 border-transparent"></i>
+            <i class="ph-bold ph-dot-outline border-b-4 border-transparent"></i>
         {/if}
     {/each}
 </div>

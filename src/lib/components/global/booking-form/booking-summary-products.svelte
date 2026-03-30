@@ -12,22 +12,22 @@
     });
 </script>
 
-<div class={twMerge(
-    "grid rounded-sm border-3 py-3 px-4",
-    bookingFormData.activeStep === 2 ? 'border-teal/80' : 'border-border/40'
-)}>
+<Button.Root
+    class={twMerge(
+        "grid rounded-sm border-3 py-3 px-4 cursor-pointer",
+        bookingFormData.activeStep === 2 ? 'border-teal/80' : 'border-border/40 hover:border-teal-light/80'
+    )}
+    onclick={() => bookingFormData.activeStep = 2}
+>
     <div class="flex items-center justify-between">
         <span class="font-normal text-foreground/80">
             You selected {bookingFormData.cart.products.length} product{bookingFormData.cart.products.length === 1 ? '' : 's'}
         </span>
-        <Button.Root
-            class="text-xs font-medium text-background bg-teal-dark/80 hover:teal-dark transition-all duration-150 cursor-pointer rounded-3xl px-4 py-1"
-            onclick={() => bookingFormData.activeStep = 2}
-        >
+        <div class="text-xs font-medium text-background bg-teal-dark/80 hover:teal-dark transition-all duration-150 cursor-pointer rounded-3xl px-4 py-1">
             Select
-        </Button.Root>
+        </div>
     </div>
     {#if cartTotal > 0}
-        <span class="text-muted font-normal">Subtotal: <span class="text-foreground/80 font-bold py-0.75">${cartTotal}</span></span>
+        <span class="text-muted font-normal text-left">Subtotal: <span class="text-foreground/80 font-bold py-0.75">${cartTotal}</span></span>
     {/if}
-</div>
+</Button.Root>

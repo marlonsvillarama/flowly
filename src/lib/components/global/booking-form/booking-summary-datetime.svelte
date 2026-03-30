@@ -54,10 +54,13 @@
     });
 </script>
 
-<div class={twMerge(
-    "grid rounded-sm border-3 py-3 px-4",
-    bookingFormData.activeStep === 1 ? 'border-teal/80' : 'border-border/40'
-)}>
+<Button.Root
+    class={twMerge(
+        "grid gap-1 rounded-sm border-3 py-3 px-4 cursor-pointer",
+        bookingFormData.activeStep === 1 ? 'border-teal/80' : 'border-border/40 hover:border-teal-light/80'
+    )}
+    onclick={() => bookingFormData.activeStep = 1}
+>
     <div class="flex items-center justify-between">
         {#if bookingFormData.date && bookingFormData.timeStart && bookingFormData.timeEnd}
             <div class="flex items-center gap-2">
@@ -67,17 +70,14 @@
         {:else}
             <span class="font-normal text-foreground/80">No selected date</span>
         {/if}
-        <Button.Root
-            class="text-xs font-medium text-background bg-teal-dark/80 hover:teal-dark transition-all duration-150 cursor-pointer rounded-3xl px-4 py-1"
-            onclick={() => bookingFormData.activeStep = 1}
-        >
+        <div class="text-xs font-medium text-background bg-teal-dark/80 hover:teal-dark transition-all duration-150 cursor-pointer rounded-3xl px-4 py-1">
             Update
-        </Button.Root>
+        </div>
     </div>
     {#if bookingFormData.timeStart && bookingFormData.timeEnd}
         <div class="flex items-center gap-2">
             <i class="ph ph-clock text-lg"></i>
-            <span class="text-sm">{timeDisplay} - {durationDisplay}</span>
+            <span class="text-sm">{timeDisplay} - <span class="italic text-xs text-foreground/80 font-light">{durationDisplay}</span></span>
         </div>
     {/if}
-</div>
+</Button.Root>

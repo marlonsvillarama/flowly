@@ -10,7 +10,7 @@
 
 <div class="inner mb-8 w-[95%] mx-auto max-w-300 flex items-center justify-between">
     <Stepper />
-    <div class="flex items-center gap-2">
+    <!-- <div class="flex items-center gap-2"> -->
         <!-- {#if bookingFormData.activeStep > 0}
             <Button.Root
                 class="flex gap-2 items-center py-2 px-5 rounded-4xl cursor-pointer hover:bg-teal-light/50 duration-150 ease-in-out font-medium text-foreground/80 text-sm"
@@ -35,5 +35,5 @@
             {/if}
         </Button.Root> -->
         <!-- {/if} -->
-    </div>
+    <!-- </div> -->
 </div>
