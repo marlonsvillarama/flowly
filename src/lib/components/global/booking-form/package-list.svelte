@@ -22,7 +22,7 @@
 </script>
 
 <div class="grid gap-3">
-    <span class="text-lg text-foreground/80 font-semibold">Packages</span>
+    <span class="text-xl text-foreground font-semibold">Packages</span>
     {#each packages as item}
         <PackageItem {item} />
     {/each}

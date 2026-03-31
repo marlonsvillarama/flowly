@@ -38,6 +38,10 @@
     };
 </script>
 
+<!-- TODO Show dialog on click -->
+<!-- Option #1: For me -->
+<!-- Option #2: Gift for someone -->
+
 <Button.Root
     class={twMerge(
         "flex flex-col justify-between w-full gap-7 border border-l-8 rounded-sm pt-3 px-4 pb-4 cursor-pointer hover:bg-muted/5 transition-all duration-150",

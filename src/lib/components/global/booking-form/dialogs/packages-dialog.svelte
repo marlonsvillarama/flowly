@@ -31,7 +31,7 @@
 <div class="grid gap-4 grid-rows-[auto_1fr]">
     <div class="grid gap-3">
         <div class="flex items-center justify-between">
-            <h1 class="font-serif text-xl">Packages</h1>
+            <h1 class="text-xl font-semibold text-foreground">Packages</h1>
             <Dialog.Close class="text-xs py-2 px-4 border rounded-sm">Close</Dialog.Close>
         </div>
         <Separator.Root class="h-0.5 bg-teal-dark" />

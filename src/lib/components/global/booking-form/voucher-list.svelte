@@ -8,7 +8,7 @@
 </script>
 
 <div class="grid gap-3">
-    <span class="text-lg text-foreground/80 font-semibold">Vouchers</span>
+    <span class="text-xl text-foreground font-semibold">Vouchers</span>
     <div class="grid grid-cols-2 gap-6 auto-rows-auto">
     {#each vouchersData as item}
         <VoucherItem {item} />

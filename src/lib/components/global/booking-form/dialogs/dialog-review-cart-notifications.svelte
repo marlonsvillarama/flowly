@@ -1,15 +1,11 @@
 <script>
     import { twMerge } from "tailwind-merge";
-    import FormHeader from "@/components/global/booking-form/form-header.svelte";
-    import FormStepHeader from "@/components/global/booking-form/form-step-header.svelte";
-    import BookingSummary from "@/components/global/booking-form/booking-summary.svelte";
-    import PackagesDialog from "@/components/global/booking-form/dialogs/packages-dialog.svelte";
     import { Dialog } from "bits-ui";
-    import { Toaster, toast } from "svelte-sonner";
     import { bookingFormData } from "@/store/booking-form.svelte";
     import { packagesData } from "@/store/packages.svelte";
-
-    let { children } = $props();
+    import { productsData } from "@/store/products.svelte";
+    import { servicesData } from "@/store/services.svelte";
+    import { vouchersData } from "@/store/vouchers.svelte";
 
     let hasPackages = $derived.by(() => {
         let items = bookingFormData.cart.services;
@@ -28,13 +24,9 @@
     });
 </script>
 
-<div class="grid grid-rows-[auto_1fr] h-screen gap-2">
-    <div class="grid gap-3 border-0 border-red">
-        <FormHeader />
-        <FormStepHeader />
-    
-        {#if hasPackages}
-        <div class="flex items-center justify-between w-[95%] mx-auto max-w-300 border-l-8 border-sand-dark bg-sand/50 rounded-sm px-4 py-3 mb-2">
+<div class="grid gap-2">
+    {#if hasPackages}
+        <div class="flex items-center justify-between border-l-8 border-sand-dark bg-sand/50 rounded-sm px-4 py-2">
             <div class="flex items-center gap-1">
                 <i class="ph-bold ph-info text-lg"></i>
                 <span class="font-normal">One or more services you selected come with a package. Care to take a look?</span>
@@ -52,7 +44,7 @@
                     <Dialog.Content class={twMerge(
                         "bg-background shadow-popover outline-hidden border py-6 px-7 rounded-lg grid gap-8 overflow-y-scroll",
                         "fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%]",
-                        "w-full max-w-[calc(100%-2rem)] sm:max-w-250 md:w-full max-h-[80%]",
+                        "w-full max-w-[calc(100%-2rem)] sm:max-w-150 md:w-full max-h-[80%]",
                         "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
                         "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
                     )}
@@ -62,19 +54,5 @@
                 </Dialog.Portal>
             </Dialog.Root>
         </div>
-        {/if}
-    </div>
-
-    <div class="w-[95%] mb-8 mx-auto max-w-300 border-0 border-green overflow-y-auto">
-        <div class="grid grid-cols-[2fr_1fr] gap-6 w-full h-full">
-            <div class="content overflow-y-auto border-gray pr-8">
-                {@render children?.()}
-            </div>
-            <div class="flex">
-                <BookingSummary />
-            </div>
-        </div>
-    </div>
+    {/if}
 </div>
-
-<Toaster position="bottom-right" closeButton duration={4000} />

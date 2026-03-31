@@ -1,17 +1,21 @@
 <script>
-    import { Button, Separator } from "bits-ui";
+    import { twMerge } from "tailwind-merge";
+    import { AlertDialog, Button, Dialog, Separator } from "bits-ui";
+    // import BookingCalendar from "./booking-calendar.svelte";
+    import BookingSummaryAmounts from "./booking-summary-amounts.svelte";
     import BookingSummaryDatetime from "./booking-summary-datetime.svelte";
     import BookingSummaryPackages from "./booking-summary-packages.svelte";
     import BookingSummaryProducts from "./booking-summary-products.svelte";
     import BookingSummaryServices from "./booking-summary-services.svelte";
     import BookingSummaryVouchers from "./booking-summary-vouchers.svelte";
-    import { bookingFormData } from "@/store/booking-form.svelte";
-    import { servicesData } from "@/store/services.svelte";
-    import { packagesData } from "@/store/packages.svelte";
-    import { vouchersData } from "@/store/vouchers.svelte";
-    import { productsData } from "@/store/products.svelte";
+    import DialogReviewCart from "./dialogs/dialog-review-cart.svelte";
+    // import { bookingFormData } from "@/store/booking-form.svelte";
+    // import { servicesData } from "@/store/services.svelte";
+    // import { packagesData } from "@/store/packages.svelte";
+    // import { vouchersData } from "@/store/vouchers.svelte";
+    // import { productsData } from "@/store/products.svelte";
 
-    let subTotal = $derived.by(() => {
+    /* let subTotal = $derived.by(() => {
         let total = 0;
 
         let services = bookingFormData.cart.services.map(d => servicesData.find(s => s.id === d) || {});
@@ -35,7 +39,7 @@
     });
 
     let taxTotal = $derived(subTotal * 0.15);
-    let cartTotal = $derived(subTotal + taxTotal);
+    let cartTotal = $derived(subTotal + taxTotal); */
 
     const resetCart = () => {
         if (confirm("Are you sure you want to do this???") === false) return;
@@ -50,44 +54,31 @@
 <div class="w-full flex flex-col items-start gap-3">
     <h2 class="text-lg font-semibold">Your Cart</h2>
 
-    <div class="grid gap-4 w-full">
+    <div class="grid py-2 w-full border rounded-lg">
         <BookingSummaryServices />
-
         <BookingSummaryPackages />
-
         <BookingSummaryVouchers />
-
         <BookingSummaryProducts />
 
-        <div class="grid gap-4">
-            <div class="flex items-center justify-between px-4 border-2 border-transparent">
-                <span class="text-sm text-foreground/80">Subtotal</span>
-                <span class="text-sm text-foreground/80">${subTotal.toFixed(2)}</span>
-            </div>
-            <div class="flex items-center justify-between px-4 border-2 border-transparent">
-                <span class="text-sm text-foreground/80">Tax (GST)</span>
-                <span class="text-sm text-foreground/80">${taxTotal.toFixed(2)}</span>
-            </div>
-            <Separator.Root class="h-px bg-border" />
-            <div class="flex items-center justify-between px-4 border-2 border-transparent">
-                <span class="text-sm text-foreground/80 uppercase">Total</span>
-                <span class="text-lg text-foreground/80 font-semibold">${cartTotal.toFixed(2)}</span>
-            </div>
-        </div>
+        <Separator.Root class="h-px bg-border border-l-6 border-transparent px-6 my-2" />
 
-        <div class="flex items-center justify-between">
-            <Button.Root
-                class="grid items-center py-2 px-15 bg-teal/90 rounded-full cursor-pointer hover:bg-storm-teal duration-150 ease-in-out font-medium text-xs text-background"
+        <BookingSummaryAmounts />
+
+        <div class="flex items-center justify-between border-l-6 border-transparent px-6 pb-4">
+<!--  -->
+            <!-- <Button.Root
+                class="grid items-center py-2 px-10 bg-teal/90 rounded-full cursor-pointer hover:bg-storm-teal duration-150 ease-in-out font-medium text-xs text-background"
                 onclick={() => alert('done!')}
             >
-                Review Details
-            </Button.Root>
+                Continue
+            </Button.Root> -->
             <Button.Root
                 class="grid items-center py-2 px-4 rounded-full cursor-pointer duration-150 ease-in-out font-normal text-xs bg-border/20 hover:bg-border/50 text-foreground/80"
                 onclick={resetCart}
             >
                 Reset Cart
             </Button.Root>
+            <DialogReviewCart />
         </div>
     </div>
 </div>

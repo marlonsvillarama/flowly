@@ -6,7 +6,7 @@
 </script>
 
 <div class="grid gap-3">
-    <span class="text-lg text-foreground/80 font-semibold">Products</span>
+    <span class="text-xl text-foreground font-semibold">Products</span>
     {#each productsData as item}
         <ProductItem {item} />
         <!-- <span class="text-lg text-foreground/80 font-semibold">{product.name}</span> -->

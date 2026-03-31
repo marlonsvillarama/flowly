@@ -1,6 +1,7 @@
 <script>
     import { twMerge } from "tailwind-merge";
     import { Button } from "bits-ui";
+    import { toast } from "svelte-sonner";
     import { bookingFormData } from "@/store/booking-form.svelte";
     import { productsData } from "@/store/products.svelte";
     // import { onMount } from "svelte";
@@ -42,6 +43,7 @@
     // });
 </script>
 
+<!-- TODO Allow user to input quantity and see subtotal -->
 <Button.Root
     class={twMerge(
         "grid gap-1 border border-l-8 rounded-sm pt-3 px-4 pb-4 cursor-pointer hover:bg-muted/5 transition-all duration-150",

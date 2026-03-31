@@ -56,11 +56,16 @@
     <!-- <div class="grid gap-1 text-left"> -->
         <div class="flex item-center justify-between">
             <span class="text-base font-medium">{item.name}</span>
-            {#if selected}
-                <i class="ph-bold ph-check text-xl"></i>
-            {:else}
-                <span class="text-xs rounded-full px-4 py-1 bg-teal-light">Add</span>
-            {/if}
+            <div class="flex items-center gap-1.5">
+                {#if selected}
+                    <!-- <i class="ph-bold ph-check text-xl"></i> -->
+                    <span class="text-xs rounded-full px-4 py-1 bg-red/20">Remove</span>
+                    <!-- <span class="text-xs rounded-full px-4 py-1 bg-muted/20">Use now</span>
+                    <span class="text-xs rounded-full px-4 py-1 bg-muted/20">Use later</span> -->
+                {:else}
+                    <span class="text-xs rounded-full px-4 py-1 bg-teal-light">Add</span>
+                {/if}
+            </div>
         </div>
         <div class="flex items-start justify-between">
             <div class="pl-6">

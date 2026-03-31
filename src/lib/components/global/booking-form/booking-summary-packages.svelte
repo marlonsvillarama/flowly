@@ -11,11 +11,12 @@
 
 <Button.Root
     class={twMerge(
-        "grid rounded-sm border-3 py-3 px-4 cursor-pointer",
-        bookingFormData.activeStep === 'packages' ? 'border-teal/80' : 'border-border/40 hover:border-teal-light/80'
+        "grid rounded-0 border-0 border-l-6 border-transparent py-2 px-6 cursor-pointer",
+        bookingFormData.activeStep === 'packages' ? 'border-teal/80 bg-teal-light/20' : ''
     )}
     onclick={() => bookingFormData.activeStep = 'packages'}
 >
+        <!-- bookingFormData.activeStep === 'packages' ? 'border-teal/80' : 'border-border/40 hover:border-teal-light/80' -->
     <div class="flex items-center justify-between">
         <span class="font-normal text-foreground/80">
             You selected {bookingFormData.cart.packages.length} package{bookingFormData.cart.packages.length === 1 ? '' : 's'}
