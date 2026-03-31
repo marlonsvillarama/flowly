@@ -16,13 +16,16 @@
     });
 </script>
 
-<div class="w-full grid gap-12">
-    {#each availableCategories as category}
-        <div class="grid gap-3">
-            <span class="text-lg text-foreground/80 font-semibold">{category.name}</span>
-            {#each category.services as service, i}
-                <ServiceItem {category} {service} />
-            {/each}
-        </div>
-    {/each}
+<div class="grid gap-3 relative">
+    <!-- <span class="text-lg text-foreground/80 font-semibold">Services</span> -->
+    <div class="w-full grid gap-12 overflow-y-auto">
+        {#each availableCategories as category}
+            <div class="grid gap-3">
+                <span class="text-lg text-foreground/80 font-semibold">{category.name}</span>
+                {#each category.services as service, i}
+                    <ServiceItem {category} {service} />
+                {/each}
+            </div>
+        {/each}
+    </div>
 </div>

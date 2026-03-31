@@ -1,6 +1,6 @@
 export const bookingFormData = $state({
     activeCategory: '',
-    activeStep: 0,
+    activeStep: 'services',
     company: {
         id: 1,
         name: 'Studio 4 Hair Salon'
@@ -13,17 +13,17 @@ export const bookingFormData = $state({
     },
     cart: {
         items: [],
-        products: []
+        packages: [],
+        products: [],
+        services: [],
+        vouchers: []
     },
     date: '',
     steps: [
         { id: 'services', label: 'Services' },
-        // { id: 'time', label: 'Calendar' },
-        { id: 'products', label: 'Products' },
         { id: 'packages', label: 'Packages' },
         { id: 'vouchers', label: 'Vouchers' },
-        // { id: 'client', label: 'Your Info' },
-        // { id: 'submit', label: 'Submit' }
+        { id: 'products', label: 'Products' },
     ],
     timeEnd: '1445',
     timeStart: ''

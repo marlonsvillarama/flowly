@@ -1,9 +1,10 @@
 <script>
     import { twMerge } from "tailwind-merge";
-    import { Button } from "bits-ui";
     import { bookingFormData } from "@/store/booking-form.svelte";
-    import { onMount } from "svelte";
-    // import { categoriesData, servicesData } from "@/store/services.svelte";
+    import { servicesData } from "@/store/services.svelte";
+    import { AlertDialog, Button, Separator } from "bits-ui";
+    import { toast } from "svelte-sonner";
+    import BookingCalendar from "./booking-calendar.svelte";
     
     let {
         category,
@@ -14,51 +15,107 @@
         return (new Intl.NumberFormat('en-NZ')).format(service.price);
     });
 
-    let selected = $state(false);
-    const addToCart = (category, service) => {
-        selected = !selected;
-
+    // let isDialogOpen = $state(false);
+    let selected = $derived(bookingFormData.cart.services.indexOf(service.id) >= 0 || false);
+    const triggerClick = () => {
         if (selected === true) {
-            bookingFormData.cart.items.push(service);
-            bookingFormData.cart.items = bookingFormData.cart.items;
+            removeFromCart();
             return;
         }
 
-        let serviceIndex = bookingFormData.cart.items.findIndex(d => d === service);
-        if (serviceIndex < 0) return;
-
-        bookingFormData.cart.items.splice(serviceIndex, 1);
-        bookingFormData.cart.items = bookingFormData.cart.items;
+        addToCart();
+        // isDialogOpen = true;
     };
 
-    onMount(() => {
-        selected = bookingFormData.cart.items.indexOf(service.id) >= 0;
-    });
+    const addToCart = () => {
+        let selectedItem = servicesData.find(s => s.id === service.id);
+
+        bookingFormData.cart.services.push(service.id);
+        bookingFormData.cart.services = [ ...new Set(bookingFormData.cart.services) ];
+
+        toast(`Item "${selectedItem.name}" has been added to your cart.`);
+        // isDialogOpen = false;
+        selected = true;
+    };
+
+    const removeFromCart = () => {
+        selected = !selected;
+
+        let selectedItem = servicesData.find(s => s.id === service.id);
+        let serviceIndex = bookingFormData.cart.services.findIndex(d => d === service.id);
+        if (serviceIndex < 0) return;
+
+        bookingFormData.cart.services.splice(serviceIndex, 1);
+        bookingFormData.cart.services = [ ...new Set(bookingFormData.cart.services) ];
+        toast(`Item "${selectedItem.name}" has been removed from your cart.`);
+    };
 </script>
 
 <Button.Root
     class={twMerge(
-        "grid grid-cols-[1fr_auto] gap-8 border border-l-8 rounded-sm pt-3 px-4 pb-4 cursor-pointer hover:bg-muted/5 transition-all duration-150",
+        "grid gap-1 border border-l-8 rounded-sm pt-3 px-4 pb-4 cursor-pointer hover:bg-muted/5 transition-all duration-150",
         selected === true ? 'bg-teal-light/30 border-teal/80 border-l-teal/80' : 'border-muted/10 border-l-muted/10'
     )}
-    onclick={() => addToCart(category.id, service.id)}
+    onclick={triggerClick}
 >
+    <div class="flex items-center justify-between">
+        <span class="text-base font-medium">{service.name}</span>
+        <div class="flex items-center gap-4">
+            <span class="text-base font-semibold text-foreground">${priceText}</span>
+            {#if selected}
+                <i class="ph-bold ph-check text-xl"></i>
+            {:else}
+                <span class="text-xs rounded-full px-4 py-1 bg-teal-light">Add</span>
+            {/if}
+        </div>
+    </div>
     <div class="grid gap-1 text-left">
-        <span class="font-semibold">{service.name}</span>
-        <div class="grid grid-cols-[2fr_1fr] gap-8 items-center">
-            <div class="flex gap-2 items-center">
-                <i class="ph ph-clock"></i>
-                <span class="font-normal text-foreground/70">Around {service.duration} minutes</span>
-            </div>
-            <div class="flex gap-2 items-center">
-                <!-- <span>From</span> -->
-                <div class="flex items-center">
-                    <i class="ph ph-currency-dollar"></i>
-                    <span class="font-normal text-foreground/70">{priceText}</span>
-                </div>
-            </div>
+        <div class="flex gap-2 items-center">
+            <i class="ph ph-hourglass"></i>
+            <span class="font-normal text-foreground/70">Around {service.duration} minutes</span>
         </div>
     </div>
 
-    <i class="ph-bold ph-{selected ? 'check' : 'plus'} text-xl"></i>
+    <!-- {#if selected}
+        <div class="grid grid-cols-2 gap-2">
+                <div class="flex gap-2 items-center">
+                    <i class="ph ph-calendar-blank"></i>
+                    <span class="font-normal text-foreground/70">3 April 2026</span>
+                </div>
+                <div class="flex gap-2 items-center">
+                    <i class="ph ph-clock-afternoon"></i>
+                    <span class="font-normal text-foreground/70">2:00 PM</span>
+                </div>
+        </div>
+    {/if} -->
 </Button.Root>
+
+<!-- <AlertDialog.Root bind:open={isDialogOpen}>
+    <AlertDialog.Portal>
+        <AlertDialog.Overlay
+            class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/80"
+        />
+        <AlertDialog.Content
+            class={twMerge(
+                "bg-background shadow-popover outline-hidden border py-6 px-7 rounded-lg grid gap-3",
+                "fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%]",
+                "w-full max-w-[calc(100%-2rem)] sm:max-w-200 md:w-full",
+                "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
+                "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
+            )}
+        >
+            <span class="text-lg font-semibold">{service.name}</span>
+            <BookingCalendar />
+
+            <div class="flex items-center justify-between mt-4">
+                <AlertDialog.Action
+                    class="grid items-center py-2 px-15 bg-teal/90 rounded-full cursor-pointer hover:bg-storm-teal duration-150 ease-in-out font-medium text-xs text-background"
+                    onclick={addToCart}
+                >Add to cart</AlertDialog.Action>
+                <AlertDialog.Cancel
+                    class="rounded-full cursor-pointer text-xs text-foreground/80 px-5 py-2 hover:bg-muted/10 transition-all duration-150"
+                >Cancel</AlertDialog.Cancel>
+            </div>
+        </AlertDialog.Content>
+    </AlertDialog.Portal>
+</AlertDialog.Root> -->

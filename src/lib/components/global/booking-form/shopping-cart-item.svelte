@@ -6,11 +6,11 @@
     let { item } = $props();
 
     const removeFromCart = (id) => {
-        let serviceIndex = bookingFormData.cart.items.findIndex(d => d.id === id);
+        let serviceIndex = bookingFormData.cart.services.findIndex(d => d.id === id);
         if (serviceIndex < 0) return;
 
-        bookingFormData.cart.items.splice(serviceIndex, 1);
-        bookingFormData.cart.items = bookingFormData.cart.items;
+        bookingFormData.cart.services.splice(serviceIndex, 1);
+        bookingFormData.cart.services = bookingFormData.cart.services;
     };
 </script>
 

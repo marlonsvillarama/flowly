@@ -1,5 +1,6 @@
 <script>
     import { Button } from "bits-ui";
+    import { Toaster } from "svelte-sonner";
 </script>
 
 <div class="p-5 flex gap-3 bg-horizon-blue/10">

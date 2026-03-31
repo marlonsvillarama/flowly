@@ -12,7 +12,8 @@
     console.log('bookingFormData.activeStep', bookingFormData.activeStep);
 
     const gotoStep = (id) => {
-        bookingFormData.activeStep = bookingFormData.steps.map(d => d.id).indexOf(id) || 0;
+        // bookingFormData.activeStep = bookingFormData.steps.map(d => d.id).indexOf(id) || 0;
+        bookingFormData.activeStep = id || '';
     };
 </script>
 
@@ -21,11 +22,11 @@
         <Button.Root
             class={twMerge(
                 "text-sm font-semibold cursor-pointer border-b-3 border-transparent",
-                i > bookingFormData.activeStep ? 'text-foreground/60' :
-                    (i === bookingFormData.activeStep ? 'text-foreground/80 border-teal' : 'text-foreground/60')
+                bookingFormData.activeStep === step.id ? 'text-foreground/80 border-teal' : 'text-foreground/60'
             )}
             onclick={() => gotoStep(step.id)}
         >
+                <!-- // i > bookingFormData.activeStep ? 'text-foreground/60' : -->
             <div class="flex gap-2 items-center">
                 {step.label}
             </div>

@@ -44,7 +44,7 @@ export let categoriesData = [
 export let servicesData = [
     {
         id: 1,
-        name: 'Under 16 years old',
+        name: 'Under 16 years old #1',
         category: 1,
         price: 25,
         duration: 30,
@@ -70,7 +70,7 @@ export let servicesData = [
     },
     {
         id: 5,
-        name: 'Hard Massage',
+        name: 'Hard Massage 5',
         category: 2,
         price: 25,
         duration: 60,
@@ -78,7 +78,7 @@ export let servicesData = [
     },
     {
         id: 6,
-        name: 'Ventosa',
+        name: 'Ventosa 6',
         category: 2,
         price: 40,
         duration: 60,
@@ -86,7 +86,7 @@ export let servicesData = [
     },
     {
         id: 7,
-        name: 'Under 16 years old',
+        name: 'Under 16 years old 7',
         category: 3,
         price: 25,
         duration: 30,
@@ -94,7 +94,7 @@ export let servicesData = [
     },
     {
         id: 8,
-        name: 'Women\'s Haircut',
+        name: 'Women\'s Haircut 8',
         category: 3,
         price: 40,
         duration: 30,
@@ -112,7 +112,7 @@ export let servicesData = [
     },
     {
         id: 9,
-        name: 'Hard Massage',
+        name: 'Hard Massage 9',
         category: 4,
         price: 25,
         duration: 60,
@@ -120,7 +120,7 @@ export let servicesData = [
     },
     {
         id: 10,
-        name: 'Ventosa',
+        name: 'Ventosa 10',
         category: 4,
         price: 40,
         duration: 60,

@@ -4,7 +4,7 @@
     import { bookingFormData } from "@/store/booking-form.svelte";
     import { servicesData } from "@/store/services.svelte";
 
-    let totalDuration = $derived(bookingFormData.cart.items.reduce((sum, next) => sum + next.duration, 0));
+    let totalDuration = $derived(bookingFormData.cart.services.reduce((sum, next) => sum + next.duration, 0));
     let dateDisplay = $derived.by(() => {
         if (!bookingFormData.date) { return ''; }
         
@@ -34,9 +34,9 @@
         });
     });
     let durationDisplay = $derived.by(() => {
-        if (bookingFormData.cart.items.length <= 0) { return ''; }
+        if (bookingFormData.cart.services.length <= 0) { return ''; }
 
-        let services = servicesData.filter(s => bookingFormData.cart.items.indexOf(s.id) >= 0);
+        let services = servicesData.filter(s => bookingFormData.cart.services.indexOf(s.id) >= 0);
         console.log('services', services);
         let total = services.reduce((sum, next) => sum + next.duration, 0);
         let hours = Math.floor(total / 60);
