@@ -33,7 +33,7 @@
         <FormHeader />
         <FormStepHeader />
     
-        {#if hasPackages}
+        <!-- {#if hasPackages}
         <div class="flex items-center justify-between w-[95%] mx-auto max-w-300 border-l-8 border-sand-dark bg-sand/50 rounded-sm px-4 py-3 mb-2">
             <div class="flex items-center gap-1">
                 <i class="ph-bold ph-info text-lg"></i>
@@ -62,11 +62,11 @@
                 </Dialog.Portal>
             </Dialog.Root>
         </div>
-        {/if}
+        {/if} -->
     </div>
 
     <div class="w-[95%] mb-8 mx-auto max-w-300 border-0 border-green overflow-y-auto">
-        <div class="grid grid-cols-[2fr_1fr] gap-6 w-full h-full">
+        <div class="grid grid-cols-[2fr_1fr] gap-2 w-full h-full">
             <div class="content overflow-y-auto border-gray pr-8">
                 {@render children?.()}
             </div>
@@ -77,4 +77,11 @@
     </div>
 </div>
 
-<Toaster position="bottom-right" closeButton duration={4000} />
+<Toaster position="bottom-right" expand={true} closeButton
+    class="[--width:40rem]! background-color:var(--color-sand)"
+    // toastOptions={{
+    //     classes: {
+    //         toast: 'bg-sand/50 w-160 border'
+    //     }
+    // }}
+/>

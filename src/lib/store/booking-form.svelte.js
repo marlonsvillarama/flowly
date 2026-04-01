@@ -26,5 +26,16 @@ export const bookingFormData = $state({
         { id: 'products', label: 'Products' },
     ],
     timeEnd: '1445',
-    timeStart: ''
+    timeStart: '',
+    filters: {
+        package: []
+    },
+    activeToasts: [],
+    toasts: {
+        'hasPackages': { type: 'warning', text: 'One or more services you selected come with a package.', action: 'View packages' }
+    }
 });
+
+export const dismissToasts = () => {
+    bookingFormData.activeToasts = [];
+};

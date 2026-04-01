@@ -104,7 +104,7 @@
                     <div class="flex items-center justify-center gap-3">
                         <Button.Root
                             class="grid items-center py-3 px-15 border bg-teal/90 rounded-4xl cursor-pointer hover:bg-storm-teal duration-150 ease-in-out font-semibold text-background"
-                            onclick={() => window.location = '/form'}
+                            onclick={() => window.location = '/location'}
                         >
                             Authenticate
                         </Button.Root>

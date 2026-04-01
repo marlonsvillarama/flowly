@@ -5,13 +5,13 @@
 </script>
 
 <!-- <div class="wrapper border-b border-teal-light bg-background fixed top-0 left-0 right-0 z-100"> -->
-<div class="wrapper border-none border-teal-light bg-background">
+<div class="wrapper border-none border-teal-light bg-background mb-2">
     <div class="inner pt-5 pb-1 w-[95%] mx-auto max-w-300 flex items-center justify-between">
-        <div class="grid gap-0">
+        <!-- <div class="grid gap-0"> -->
             <h1 class="text-3xl font-semibold text-teal-dark">{bookingFormData.company.name}</h1>
             <!-- <Stepper /> -->
-        </div>
-        <div class="hello grid gap-2 text-right items-end justify-right">
+        <!-- </div> -->
+        <!-- <div class="hello grid gap-2 text-right items-end justify-right"> -->
             <span class="text-md">
                 {#if bookingFormData.client}
                     Welcome back, <span class="font-semibold">{bookingFormData.client.name.first}</span>!
@@ -30,6 +30,15 @@
                     </Popover.Trigger>
                 </Popover.Root>
             </div> -->
+        <!-- </div> -->
+    </div>
+    <div class="w-[95%] mx-auto max-w-300 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <span class="text-sm text-foreground/60 italic">Shop 105, The Plaza, Palmerston North</span>
+            <Button.Root class="text-blue-700 underline cursor-pointer">Change location</Button.Root>
+        </div>
+        <div class="flex items-center gap-4">
+            <span></span>
         </div>
     </div>
 </div>

@@ -11,13 +11,26 @@
 
     let originalPrice = $derived(item.services.reduce((sum, next) => sum + (next.count * next.price), 0));
     let selected = $derived(bookingFormData.cart.packages.indexOf(item.id) >= 0 || false);
+    const triggerClick = () => {
+        if (selected === true) {
+            removeFromCart();
+            return;
+        }
+
+        addToCart();
+        // isDialogOpen = true;
+    };
+
     const addToCart = () => {
-        selected = !selected;
+        // selected = !selected;
 
         let selectedItem = packagesData.find(d => d.id === item.id);
-        if (selected === true) {
-            bookingFormData.cart.packages.push(item.id);
-            bookingFormData.cart.packages = [ ...new Set(bookingFormData.cart.packages) ];
+        // if (selected === true) {
+        bookingFormData.cart.packages.push(item.id);
+        bookingFormData.cart.packages = [ ...new Set(bookingFormData.cart.packages) ];
+
+        selected = true;
+        // checkForPackages();
 
             // selectedItem.services.forEach(s => {
             //     let serviceIndex = bookingFormData.cart.services.indexOf(s.service);
@@ -28,17 +41,30 @@
             //     }
             // });
 
-            toast(`Package "${selectedItem.name}" has been added to your cart.`);
-            bookingFormData.activeStep = 'packages';
-            return;
-        }
+            // toast(`Package "${selectedItem.name}" has been added to your cart.`);
+            // bookingFormData.activeStep = 'packages';
+            // return;
+        // }
 
-        let index = bookingFormData.cart.packages.findIndex(d => d === item.id);
-        if (index < 0) return;
+        // let index = bookingFormData.cart.packages.findIndex(d => d === item.id);
+        // if (index < 0) return;
 
-        bookingFormData.cart.packages.splice(index, 1);
+        // bookingFormData.cart.packages.splice(index, 1);
+        // bookingFormData.cart.packages = [ ...new Set(bookingFormData.cart.packages) ];
+        // toast(`Package "${selectedItem.name}" has been removed from your cart.`);
+    };
+
+    const removeFromCart = () => {
+        let selectedItem = packagesData.find(s => s.id === item.id);
+        let itemIndex = bookingFormData.cart.packages.findIndex(d => d === item.id);
+        if (itemIndex < 0) return;
+
+        bookingFormData.cart.packages.splice(itemIndex, 1);
         bookingFormData.cart.packages = [ ...new Set(bookingFormData.cart.packages) ];
-        toast(`Package "${selectedItem.name}" has been removed from your cart.`);
+        selected = false;
+
+        // toast(`Item "${selectedItem.name}" has been removed from your cart.`);
+        // checkForPackages();
     };
 
     // onMount(() => {
@@ -46,12 +72,11 @@
     // });
 </script>
 
-<Button.Root
+<div
     class={twMerge(
         "grid w-full gap-1 border border-l-8 rounded-sm pt-3 px-4 pb-4 cursor-pointer hover:bg-muted/5 transition-all duration-150",
         selected === true ? 'bg-teal-light/30 border-teal/80 border-l-teal/80' : 'border-muted/10 border-l-muted/10'
     )}
-    onclick={addToCart}
 >
     <!-- <div class="grid gap-1 text-left"> -->
         <div class="flex item-center justify-between">
@@ -59,11 +84,16 @@
             <div class="flex items-center gap-1.5">
                 {#if selected}
                     <!-- <i class="ph-bold ph-check text-xl"></i> -->
-                    <span class="text-xs rounded-full px-4 py-1 bg-red/20">Remove</span>
+                    <!-- <span class="text-xs rounded-full px-4 py-1 bg-red/20">Remove</span> -->
                     <!-- <span class="text-xs rounded-full px-4 py-1 bg-muted/20">Use now</span>
                     <span class="text-xs rounded-full px-4 py-1 bg-muted/20">Use later</span> -->
+                    <Button.Root onclick={triggerClick}
+                        class="text-xs rounded-full px-4 py-1 bg-red/20 cursor-pointer"
+                    >Remove</Button.Root>
                 {:else}
-                    <span class="text-xs rounded-full px-4 py-1 bg-teal-light">Add</span>
+                <Button.Root onclick={triggerClick}
+                    class="text-xs rounded-full px-4 py-1 bg-teal-light cursor-pointer"
+                >Add</Button.Root>
                 {/if}
             </div>
         </div>
@@ -77,12 +107,12 @@
                     </div>
                 {/each}
             </div>
-            <div class="flex flex-col text-right bg-border/50 px-4 py-2 rounded-sm">
-                <div class="">
-                    <span class="text-base font-light line-through decoration-2 decoration-foreground">${(new Intl.NumberFormat('en-NZ')).format(originalPrice)}</span>
-                    <span class="text-xl font-semibold text-teal-dark">${(new Intl.NumberFormat('en-NZ')).format(item.price)}</span>
+            <div class="flex flex-col text-right bg-border/0 px-0 py-1 rounded-sm">
+                <div class="flex items-center justify-end gap-2">
+                    <span class="text-base font-normal line-through decoration-2 decoration-teal-dark">${(new Intl.NumberFormat('en-NZ')).format(originalPrice)}</span>
+                    <span class="text-xl font-semibold text-foreground">${(new Intl.NumberFormat('en-NZ')).format(item.price)}</span>
                 </div>
-                <span>You save ${(new Intl.NumberFormat('en-NZ')).format(originalPrice - item.price)}</span>
+                <span class="text-xs text-foreground/60">You save ${(new Intl.NumberFormat('en-NZ')).format(originalPrice - item.price)}</span>
             </div>
         </div>
     <!-- </div> -->
@@ -91,4 +121,4 @@
         </div>
         <div class="text-xs px-5 py-2 mt-3 bg-sand rounded-full font-medium">Buy this package</div>
     </div> -->
-</Button.Root>
+</div>

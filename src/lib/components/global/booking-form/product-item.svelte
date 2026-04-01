@@ -16,26 +16,26 @@
     });
 
     let selected = $derived(bookingFormData.cart.products.indexOf(item.id) >= 0 || false);
-    const addToCart = (id) => {
+    const addToCart = () => {
         selected = !selected;
 
         let selectedItem = productsData.find(d => d.id === item.id);
         if (selected === true) {
-            bookingFormData.cart.products.push(id);
+            bookingFormData.cart.products.push(item.id);
             bookingFormData.cart.products = bookingFormData.cart.products;
 
-            toast(`Product "${selectedItem.name}" has been added to your cart.`);
+            // toast(`Product "${selectedItem.name}" has been added to your cart.`);
             return;
         }
 
-        console.log('bookingFormData.cart.products', bookingFormData.cart.products);
-        let itemIndex = bookingFormData.cart.products.findIndex(d => d === id);
-        console.log('itemIndex', itemIndex);
+        // console.log('bookingFormData.cart.products', bookingFormData.cart.products);
+        let itemIndex = bookingFormData.cart.products.findIndex(d => d === item.id);
+        // console.log('itemIndex', itemIndex);
         if (itemIndex < 0) return;
 
         bookingFormData.cart.products.splice(itemIndex, 1);
         bookingFormData.cart.products = bookingFormData.cart.products;
-        toast(`Product "${selectedItem.name}" has been removed from your cart.`);
+        // toast(`Product "${selectedItem.name}" has been removed from your cart.`);
     };
 
     // onMount(() => {
@@ -44,12 +44,11 @@
 </script>
 
 <!-- TODO Allow user to input quantity and see subtotal -->
-<Button.Root
+<div
     class={twMerge(
-        "grid gap-1 border border-l-8 rounded-sm pt-3 px-4 pb-4 cursor-pointer hover:bg-muted/5 transition-all duration-150",
+        "grid gap-1 border border-l-8 rounded-sm pt-3 px-4 pb-4 hover:bg-muted/5 transition-all duration-150",
         selected === true ? 'bg-teal-light/30 border-teal/80 border-l-teal/80' : 'border-muted/10 border-l-muted/10'
     )}
-    onclick={() => addToCart(item.id)}
 >
     <!-- <div class="grid gap-1 text-left"> -->
     <div class="flex items-center justify-between">
@@ -64,9 +63,16 @@
         <div class="flex items-center gap-4">
             <span class="text-base font-semibold text-foreground">${priceText}</span>
             {#if selected}
-                <i class="ph-bold ph-check text-xl"></i>
+                <!-- <i class="ph-bold ph-check text-xl"></i> -->
+                <Button.Root onclick={addToCart}
+                    class="text-xs rounded-full px-4 py-1 bg-red/20 cursor-pointer"
+                >Remove</Button.Root>
             {:else}
-                <span class="text-xs rounded-full px-4 py-1 bg-teal-light">Add</span>
+                <Button.Root onclick={addToCart}
+                    class="text-xs rounded-full px-4 py-1 bg-teal-light cursor-pointer"
+                >
+                    Add
+                </Button.Root>
             {/if}
             <!-- <i class="ph-bold ph-{selected ? 'check' : 'plus'} text-xl"></i> -->
         </div>
@@ -95,4 +101,4 @@
     <!-- </div> -->
 
     <!-- <i class="ph-bold ph-{selected ? 'check' : 'plus'} text-xl"></i> -->
-</Button.Root>
+</div>
