@@ -9,7 +9,7 @@
     //     { id: 'confirm', label: 'Confirm' }
     // ];
 
-    console.log('bookingFormData.activeStep', bookingFormData.activeStep);
+    // console.log('bookingFormData.activeStep', bookingFormData.activeStep);
 
     const gotoStep = (id) => {
         // bookingFormData.activeStep = bookingFormData.steps.map(d => d.id).indexOf(id) || 0;
@@ -17,11 +17,11 @@
     };
 </script>
 
-<div class="flex items-center gap-5">
+<div class="flex items-center gap-8">
     {#each bookingFormData.steps as step, i}
         <Button.Root
             class={twMerge(
-                "text-sm font-semibold cursor-pointer border-b-3 border-transparent",
+                "text-sm font-medium cursor-pointer border-b-3 border-transparent",
                 bookingFormData.activeStep === step.id ? 'text-foreground/80 border-teal' : 'text-foreground/60'
             )}
             onclick={() => gotoStep(step.id)}
@@ -32,8 +32,8 @@
             </div>
         </Button.Root>
 
-        {#if i < bookingFormData.steps.length - 1}
+        <!-- {#if i < bookingFormData.steps.length - 1}
             <i class="ph-bold ph-dot-outline border-b-4 border-transparent"></i>
-        {/if}
+        {/if} -->
     {/each}
 </div>

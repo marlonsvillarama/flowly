@@ -74,14 +74,34 @@
 
 <div
     class={twMerge(
-        "grid w-full gap-1 border border-l-8 rounded-sm pt-3 px-4 pb-4 cursor-pointer hover:bg-muted/5 transition-all duration-150",
+        "grid grid-cols-[1fr_auto] w-full gap-1 border border-l-8 rounded-sm pt-3 px-4 pb-4 cursor-pointer hover:bg-muted/5 transition-all duration-150",
         selected === true ? 'bg-teal-light/30 border-teal/80 border-l-teal/80' : 'border-muted/10 border-l-muted/10'
     )}
 >
     <!-- <div class="grid gap-1 text-left"> -->
-        <div class="flex item-center justify-between">
+        <div class="grid">
             <span class="text-base font-medium">{item.name}</span>
-            <div class="flex items-center gap-1.5">
+            <div class="pl-6">
+                {#each item.services as service}
+                    <div class="text-left text-xs font-light py-0.5 grid grid-cols-[auto_auto_1fr] items-center gap-1">
+                        <span class="text-sm">{service.count}</span>
+                        <i class="ph ph-x"></i>
+                        <span>{service.name}</span>
+                    </div>
+                {/each}
+            </div>
+        </div>
+        
+        <div class="grid">
+            <div class="flex flex-col text-right bg-border/0 px-0 py-1 rounded-sm">
+                <div class="flex items-center justify-end gap-2">
+                    <span class="text-base font-normal line-through decoration-2 decoration-teal-dark">${(new Intl.NumberFormat('en-NZ')).format(originalPrice)}</span>
+                    <span class="text-xl font-semibold text-foreground">${(new Intl.NumberFormat('en-NZ')).format(item.price)}</span>
+                </div>
+                <span class="text-xs text-foreground/60">Save ${(new Intl.NumberFormat('en-NZ')).format(originalPrice - item.price)} vs individual bookings</span>
+            </div>
+
+            <div class="flex items-center justify-end gap-1.5">
                 {#if selected}
                     <!-- <i class="ph-bold ph-check text-xl"></i> -->
                     <!-- <span class="text-xs rounded-full px-4 py-1 bg-red/20">Remove</span> -->
@@ -95,24 +115,6 @@
                     class="text-xs rounded-full px-4 py-1 bg-teal-light cursor-pointer"
                 >Add</Button.Root>
                 {/if}
-            </div>
-        </div>
-        <div class="flex items-start justify-between">
-            <div class="pl-6">
-                {#each item.services as service}
-                    <div class="text-left text-xs font-light py-0.5 grid grid-cols-[1rem_auto_1fr] items-center gap-2">
-                        <span class="text-sm">{service.count}</span>
-                        <i class="ph ph-x"></i>
-                        <span>{service.name}</span>
-                    </div>
-                {/each}
-            </div>
-            <div class="flex flex-col text-right bg-border/0 px-0 py-1 rounded-sm">
-                <div class="flex items-center justify-end gap-2">
-                    <span class="text-base font-normal line-through decoration-2 decoration-teal-dark">${(new Intl.NumberFormat('en-NZ')).format(originalPrice)}</span>
-                    <span class="text-xl font-semibold text-foreground">${(new Intl.NumberFormat('en-NZ')).format(item.price)}</span>
-                </div>
-                <span class="text-xs text-foreground/60">You save ${(new Intl.NumberFormat('en-NZ')).format(originalPrice - item.price)}</span>
             </div>
         </div>
     <!-- </div> -->

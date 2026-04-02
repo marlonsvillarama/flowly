@@ -1,31 +1,31 @@
 <script>
     import { twMerge } from "tailwind-merge";
     import { Dialog } from "bits-ui";
-    import { bookingFormData } from "@/store/booking-form.svelte";
+    import { bookingFormData, getHasMatchingPackages } from "@/store/booking-form.svelte";
     import { packagesData } from "@/store/packages.svelte";
     import { productsData } from "@/store/products.svelte";
     import { servicesData } from "@/store/services.svelte";
     import { vouchersData } from "@/store/vouchers.svelte";
 
-    let hasPackages = $derived.by(() => {
-        let items = bookingFormData.cart.services;
-        if (items.length <= 0) return false;
+    // let hasPackages = $derived.by(() => {
+    //     let items = bookingFormData.cart.services;
+    //     if (items.length <= 0) return false;
 
-        let isTrue = false;
-        items.forEach(item => {
-            if (packagesData.filter(p =>
-                p.services.filter(s => s.service === item).length >= 0).length > 0
-            ) {
-                isTrue = true;
-            }
-        });
+    //     let isTrue = false;
+    //     items.forEach(item => {
+    //         if (packagesData.filter(p =>
+    //             p.services.filter(s => s.service === item).length >= 0).length > 0
+    //         ) {
+    //             isTrue = true;
+    //         }
+    //     });
 
-        return isTrue;
-    });
+    //     return isTrue;
+    // });
 </script>
 
 <div class="grid gap-2">
-    {#if hasPackages}
+    {#if getHasMatchingPackages() === true}
         <div class="flex items-center justify-between border-l-8 border-sand-dark bg-sand/50 rounded-sm px-4 py-2">
             <div class="flex items-center gap-1">
                 <i class="ph-bold ph-info text-lg"></i>

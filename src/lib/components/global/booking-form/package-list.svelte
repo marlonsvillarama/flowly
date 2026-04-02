@@ -1,6 +1,5 @@
 <script>
     import { Button, Separator } from "bits-ui";
-    import ProductItem from "./product-item.svelte";
     import PackageItem from "./package-item.svelte";
     import { bookingFormData } from "@/store/booking-form.svelte";
     import { packagesData } from "@/store/packages.svelte";

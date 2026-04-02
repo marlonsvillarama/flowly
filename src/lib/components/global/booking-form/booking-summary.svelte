@@ -2,14 +2,16 @@
     import { twMerge } from "tailwind-merge";
     import { AlertDialog, Button, Dialog, Separator } from "bits-ui";
     // import BookingCalendar from "./booking-calendar.svelte";
+    import BookingFormDialog from "./dialogs/booking-form-dialog.svelte";
     import BookingSummaryAmounts from "./booking-summary-amounts.svelte";
     import BookingSummaryDatetime from "./booking-summary-datetime.svelte";
     import BookingSummaryPackages from "./booking-summary-packages.svelte";
     import BookingSummaryProducts from "./booking-summary-products.svelte";
     import BookingSummaryServices from "./booking-summary-services.svelte";
     import BookingSummaryVouchers from "./booking-summary-vouchers.svelte";
-    import DialogReviewCart from "./dialogs/dialog-review-cart.svelte";
-    // import { bookingFormData } from "@/store/booking-form.svelte";
+    import RedeemPackagesDialog from "./dialogs/redeem-packages-dialog.svelte";
+    // import DialogReviewCart from "./dialogs/dialog-review-cart.svelte";
+    import { hasMatchingPackages, hasRedeemablePackages, packagesForReview, packagesForRedemption } from "@/store/booking-form.svelte";
     // import { servicesData } from "@/store/services.svelte";
     // import { packagesData } from "@/store/packages.svelte";
     // import { vouchersData } from "@/store/vouchers.svelte";
@@ -49,18 +51,20 @@
         bookingFormData.cart.vouchers = [];
         bookingFormData.cart.products = [];
     };
+
+    let redeemPackages = $derived(hasRedeemablePackages());
 </script>
 
 <div class="w-full flex flex-col items-start gap-3">
     <h2 class="text-lg font-semibold">Your Cart</h2>
 
-    <div class="grid py-2 w-full border rounded-lg">
-        <BookingSummaryServices />
-        <BookingSummaryPackages />
-        <BookingSummaryVouchers />
-        <BookingSummaryProducts />
+    <div class="grid py-2 w-full border rounded-sm">
+        <!-- <BookingSummaryServices /> -->
+        <!-- <BookingSummaryPackages /> -->
+        <!-- <BookingSummaryVouchers /> -->
+        <!-- <BookingSummaryProducts /> -->
 
-        <Separator.Root class="h-px bg-border border-l-6 border-transparent px-6 my-2" />
+        <!-- <Separator.Root class="h-px bg-border border-l-6 border-transparent px-6 my-2" /> -->
 
         <BookingSummaryAmounts />
 
@@ -78,7 +82,23 @@
             >
                 Reset Cart
             </Button.Root>
-            <DialogReviewCart />
+
+            {#if redeemPackages === true}
+                <RedeemPackagesDialog />
+            {:else}
+                <Button.Root
+                    onclick={() => {
+                        console.log('hasMatchingPackages', hasMatchingPackages());
+                        console.log('hasRedeemablePackages', hasRedeemablePackages());
+                        // console.log('packagesForReview', packagesForReview());
+                        // window.location = getHasMatchingPackages() === true && packagesForReview().length > 0 ? './review-pkg' : './client-info'
+                        // window.location = './client-info'
+                    }}
+                    class="grid items-center py-2 px-10 bg-teal/90 rounded-full cursor-pointer hover:bg-storm-teal duration-150 ease-in-out font-medium text-xs text-background"
+                >
+                    Continue
+                </Button.Root>
+            {/if}
         </div>
     </div>
 </div>

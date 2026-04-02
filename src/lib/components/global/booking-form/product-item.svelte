@@ -56,7 +56,7 @@
         <!-- <div class="grid gap-1 text-left"> -->
         <!-- <span class="text-base font-medium">{service.name}</span>
         <div class="grid gap-1"> -->
-        <span class="font-semibold text-left">{item.name}</span>
+        <span class="text-base font-semibold text-left">{item.name}</span>
         <!-- {#if item.description}
             <span class="text-muted/80 text-left">{item.description}</span>
         {/if} -->

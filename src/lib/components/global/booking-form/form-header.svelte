@@ -1,5 +1,5 @@
 <script>
-    import { Button, Popover } from "bits-ui";
+    import { AlertDialog, Button, Popover } from "bits-ui";
     import Stepper from "./stepper.svelte";
     import { bookingFormData } from "@/store/booking-form.svelte";
 </script>
@@ -35,10 +35,13 @@
     <div class="w-[95%] mx-auto max-w-300 flex items-center justify-between">
         <div class="flex items-center gap-3">
             <span class="text-sm text-foreground/60 italic">Shop 105, The Plaza, Palmerston North</span>
+            
             <Button.Root class="text-blue-700 underline cursor-pointer">Change location</Button.Root>
         </div>
-        <div class="flex items-center gap-4">
-            <span></span>
+        <div class="flex items-center gap-6">
+            <span>My Profile</span>
+            <span>My Bookings</span>
+            <span>My Invoices</span>
         </div>
     </div>
 </div>

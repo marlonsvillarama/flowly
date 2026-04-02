@@ -27,6 +27,7 @@
 
 <div class="w-120 grid gap-4">
     <span class="text-2xl font-semibold text-foreground">Select a location</span>
+    
     {#each locations as location}
         <Button.Root onclick={() => window.location = '/form'}
             class="grid gap-1 px-9 py-8 w-full rounded-xl border-2 border-border/50 cursor-pointer hover:border-teal-dark hover:bg-teal-light/50 transition-all duration-150"
@@ -47,10 +48,4 @@
             </span>
         </Button.Root>
     {/each}
-    <!-- <Button.Root
-        class="grid items-center py-3 px-15 border bg-teal/90 rounded-full cursor-pointer hover:bg-storm-teal duration-150 ease-in-out font-semibold text-background"
-        onclick={() => window.location = '/form'}
-    >
-        Select this location
-    </Button.Root> -->
 </div>

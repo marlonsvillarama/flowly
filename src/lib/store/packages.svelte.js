@@ -26,7 +26,7 @@ export const packagesData = [
         price: 999.75,
         services: [
             { service: 5, count: 2 },
-            { service: 8, count: 3 },
+            { service: 6, count: 3 },
         ]
     },
     {
@@ -34,7 +34,7 @@ export const packagesData = [
         name: 'Special #3',
         price: 999.75,
         services: [
-            { service: 5, count: 2 },
+            { service: 7, count: 2 },
             { service: 8, count: 3 },
         ]
     },
@@ -52,8 +52,8 @@ export const packagesData = [
         name: 'Special #3',
         price: 999.75,
         services: [
-            { service: 5, count: 2 },
-            { service: 8, count: 3 },
+            { service: 6, count: 2 },
+            { service: 7, count: 3 },
         ]
     },
 ];

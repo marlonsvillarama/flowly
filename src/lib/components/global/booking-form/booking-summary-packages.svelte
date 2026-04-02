@@ -19,8 +19,9 @@
         <!-- bookingFormData.activeStep === 'packages' ? 'border-teal/80' : 'border-border/40 hover:border-teal-light/80' -->
     <div class="flex items-center justify-between">
         <span class="font-normal text-foreground/80">
-            You selected {bookingFormData.cart.packages.length} package{bookingFormData.cart.packages.length === 1 ? '' : 's'}
+            {bookingFormData.cart.packages.length} <i class="ph ph-x text-xs"></i> package{bookingFormData.cart.packages.length === 1 ? '' : 's'}
         </span>
+        <!-- You selected  -->
         <span class="text-foreground/80 font-bold py-0.75">${cartTotal}</span>
         <!-- <span class="text-xs font-medium text-background bg-teal-dark/80 hover:teal-dark transition-all duration-150 rounded-3xl px-4 py-1">
             Select

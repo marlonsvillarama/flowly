@@ -1,9 +1,11 @@
 <script>
     import { Button, Separator } from "bits-ui";
+    import PackageItem from "./package-item.svelte";
     import ServiceItem from "@/components/global/booking-form/service-item.svelte";
     import ServiceSelector from "@/components/global/booking-form/service-selector.svelte";
     import { bookingFormData } from "@/store/booking-form.svelte";
     import { categoriesData, servicesData } from "@/store/services.svelte";
+    import { packagesData } from "@/store/packages.svelte";
 
     let availableCategories = $derived.by(() => {
         let list = categoriesData.filter(c => servicesData.filter(s => s.category === c.id).length > 0);
@@ -13,6 +15,20 @@
                 services: servicesData.filter(s => s.category === c.id)
             };
         })
+    });
+
+    let packages = $derived.by(() => {
+        return packagesData.map(p => {
+            return {
+                ...p,
+                services: p.services.map(svc => {
+                    return {
+                        ...svc,
+                        ...servicesData.find(s => s.id === svc.service)
+                    };
+                })
+            }
+        });
     });
 </script>
 
@@ -27,5 +43,12 @@
                 {/each}
             </div>
         {/each}
+
+        <!-- <div class="grid gap-3">
+            <span class="text-xl text-foreground font-semibold">Packages</span>
+            {#each packages as item}
+                <PackageItem {item} />
+            {/each}
+        </div> -->
     </div>
 </div>
