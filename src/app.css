@@ -128,7 +128,7 @@
     --color-white: var(--white);
     --color-coral: var(--coral);
 
-    --color-green: var(--green);
+    /* --color-green: var(--green);
     --color-green-light: var(--green-light);
     --color-amber: var(--amber);
     --color-amber-light: var(--amber-light);
@@ -151,7 +151,7 @@
     --color-storm-teal: var(--storm-teal);
     --color-ice-highlight: var(--ice-highlight);
     --color-aurora-violet: var(--aurora-violet);
-    --color-frost-white: var(--frost-white);
+    --color-frost-white: var(--frost-white); */
 }
 
 @layer base {
