@@ -68,37 +68,5 @@
 
         <BookingSummaryAmounts />
 
-        <div class="flex items-center justify-between border-l-6 border-transparent px-6 pb-4">
-<!--  -->
-            <!-- <Button.Root
-                class="grid items-center py-2 px-10 bg-teal/90 rounded-full cursor-pointer hover:bg-storm-teal duration-150 ease-in-out font-medium text-xs text-background"
-                onclick={() => alert('done!')}
-            >
-                Continue
-            </Button.Root> -->
-            <Button.Root
-                class="grid items-center py-2 px-4 rounded-full cursor-pointer duration-150 ease-in-out font-normal text-xs bg-border/20 hover:bg-border/50 text-foreground/80"
-                onclick={resetCart}
-            >
-                Reset Cart
-            </Button.Root>
-
-            {#if redeemPackages === true}
-                <RedeemPackagesDialog />
-            {:else}
-                <Button.Root
-                    onclick={() => {
-                        console.log('hasMatchingPackages', hasMatchingPackages());
-                        console.log('hasRedeemablePackages', hasRedeemablePackages());
-                        // console.log('packagesForReview', packagesForReview());
-                        // window.location = getHasMatchingPackages() === true && packagesForReview().length > 0 ? './review-pkg' : './client-info'
-                        // window.location = './client-info'
-                    }}
-                    class="grid items-center py-2 px-10 bg-teal/90 rounded-full cursor-pointer hover:bg-storm-teal duration-150 ease-in-out font-medium text-xs text-background"
-                >
-                    Continue
-                </Button.Root>
-            {/if}
-        </div>
     </div>
 </div>

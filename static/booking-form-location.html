@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flowly – Select Location</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #3A9B8E;
+      --teal-dark: #2B7A6E;
+      --teal-light: #D4EFEB;
+      --teal-pale: #EEF8F6;
+      --sand: #F2E8D5;
+      --charcoal: #1E2A28;
+      --charcoal-mid: #3D4D4A;
+      --muted: #7A8C89;
+      --white: #FDFCFB;
+      --border: #E4E7E6;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: radial-gradient(ellipse 100% 70% at 50% -10%, var(--teal-pale) 0%, var(--white) 65%);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--charcoal);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      border-radius: 1.25rem;
+      padding: 2.5rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+      box-shadow:
+        0 0 0 1px rgba(58,155,142,.12),
+        0 4px 8px -2px rgba(30,42,40,.08),
+        0 16px 40px -8px rgba(30,42,40,.1);
+    }
+
+    /* ── Logo / header ── */
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+    .logo .flow { color: var(--charcoal); }
+    .logo .ly   { color: var(--teal); }
+
+    .section-header { display: flex; flex-direction: column; gap: 0.25rem; }
+    .section-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+    .section-sub { font-size: 0.8125rem; color: var(--muted); }
+
+    /* ── Location cards ── */
+    .locations { display: flex; flex-direction: column; gap: 0.625rem; }
+
+    .location-card {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding: 1rem 1.125rem;
+      border-radius: 0.875rem;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 150ms, box-shadow 150ms, background 150ms;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+    }
+    .location-card:hover {
+      border-color: var(--teal);
+      background: var(--teal-pale);
+      box-shadow: 0 2px 12px rgba(58,155,142,.12);
+    }
+
+    .location-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: var(--teal-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .location-icon i { font-size: 1.125rem; color: var(--teal); }
+
+    .location-info { flex: 1; display: flex; flex-direction: column; gap: 0.125rem; }
+    .location-name { font-size: 0.875rem; font-weight: 600; color: var(--charcoal); }
+    .location-addr { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
+
+    .location-arrow { color: var(--teal); font-size: 1rem; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- Logo -->
+    <div class="logo"><span class="flow">Flow</span><span class="ly">ly</span></div>
+
+    <!-- Section header -->
+    <div class="section-header">
+      <h2 class="section-title">Select a location</h2>
+      <p class="section-sub">Choose your nearest location to get started</p>
+    </div>
+
+    <!-- Locations -->
+    <div class="locations">
+      <button class="location-card" onclick="window.location='booking-form-main.html'">
+        <div class="location-icon"><i class="ph ph-map-pin"></i></div>
+        <div class="location-info">
+          <span class="location-name">Perfect Nails &amp; Beauty</span>
+          <span class="location-addr">111 Queen Street, Masterton<br>Masterton, Wellington 5810</span>
+        </div>
+        <i class="ph ph-arrow-right location-arrow"></i>
+      </button>
+
+      <button class="location-card" onclick="window.location='booking-form-main.html'">
+        <div class="location-icon"><i class="ph ph-map-pin"></i></div>
+        <div class="location-info">
+          <span class="location-name">Deluxe Nails &amp; Spa</span>
+          <span class="location-addr">Shop 105, The Plaza<br>Palmerston North, Manawatu-Whanganui 4410</span>
+        </div>
+        <i class="ph ph-arrow-right location-arrow"></i>
+      </button>
+    </div>
+  </div>
+</body>
+</html>

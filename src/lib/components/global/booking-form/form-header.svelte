@@ -5,7 +5,7 @@
 </script>
 
 <!-- <div class="wrapper border-b border-teal-light bg-background fixed top-0 left-0 right-0 z-100"> -->
-<div class="wrapper border-none border-teal-light bg-background mb-2">
+<div class="wrapper border-none border-teal-light bg-background">
     <div class="inner pt-5 pb-1 w-[95%] mx-auto max-w-300 flex items-center justify-between">
         <!-- <div class="grid gap-0"> -->
             <h1 class="text-3xl font-semibold text-teal-dark">{bookingFormData.company.name}</h1>

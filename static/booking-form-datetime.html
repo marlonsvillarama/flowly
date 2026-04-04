@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flowly – Select Date &amp; Time</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal: #3A9B8E;
+      --teal-dark: #2B7A6E;
+      --teal-light: #D4EFEB;
+      --teal-pale: #EEF8F6;
+      --sand: #F2E8D5;
+      --sand-dark: #E4D4B8;
+      --charcoal: #1E2A28;
+      --charcoal-mid: #3D4D4A;
+      --muted: #7A8C89;
+      --white: #FDFCFB;
+      --coral: #E07060;
+      --border: #E5E9E8;
+      --bg: #F7FAF9;
+    }
+    html, body { height: 100%; }
+    body {
+      display: flex; flex-direction: column; height: 100vh; overflow: hidden;
+      font-family: 'Inter', sans-serif; font-size: 14px;
+      color: var(--charcoal); background: var(--bg);
+    }
+
+    /* ── Header ── */
+    .app-header { background: #fff; border-bottom: 1px solid var(--border); flex-shrink: 0; padding: 0 2rem; }
+    .header-top { display: flex; align-items: center; justify-content: space-between; padding: 0.875rem 0 0.5rem; }
+    .company-name { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; color: var(--teal-dark); }
+    .header-right { display: flex; align-items: center; gap: 1.25rem; }
+    .welcome-text { font-size: 0.8125rem; color: var(--charcoal-mid); }
+    .welcome-text strong { font-weight: 600; }
+    .header-nav { display: flex; gap: 1.25rem; }
+    .header-nav a { font-size: 0.8125rem; color: var(--muted); text-decoration: none; transition: color 150ms; }
+    .header-nav a:hover { color: var(--teal-dark); }
+    .header-bottom { display: flex; align-items: center; gap: 0.5rem; padding-bottom: 0.625rem; }
+    .location-text { font-size: 0.75rem; color: var(--muted); font-style: italic; }
+    .change-link { font-size: 0.75rem; color: var(--teal); text-decoration: underline; cursor: pointer; background: none; border: none; font-family: inherit; }
+
+    /* ── Toolbar ── */
+    .toolbar { background: #fff; border-bottom: 1px solid var(--border); padding: 0.75rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+    .page-title { font-size: 1rem; font-weight: 600; color: var(--charcoal); }
+    .toolbar-actions { display: flex; gap: 0.625rem; }
+    .btn-back {
+      display: flex; align-items: center; gap: 0.375rem; padding: 0.5rem 1rem;
+      font-size: 0.8125rem; font-weight: 500; color: var(--charcoal-mid);
+      background: transparent; border: 1px solid var(--border); border-radius: 0.5rem;
+      cursor: pointer; font-family: inherit; transition: background 150ms;
+    }
+    .btn-back:hover { background: var(--border); }
+    .btn-continue {
+      display: flex; align-items: center; gap: 0.375rem; padding: 0.5rem 1.25rem;
+      font-size: 0.8125rem; font-weight: 600; color: #fff; background: var(--teal);
+      border: none; border-radius: 0.5rem; cursor: pointer; font-family: inherit;
+      transition: background 150ms; box-shadow: 0 2px 8px rgba(58,155,142,.25);
+    }
+    .btn-continue:hover { background: var(--teal-dark); }
+    .btn-continue:disabled { background: var(--border); color: var(--muted); box-shadow: none; cursor: not-allowed; }
+
+    /* ── Content ── */
+    .content-area {
+      flex: 1; overflow-y: auto; padding: 1.5rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    /* ── Section card ── */
+    .section-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 0.875rem;
+      overflow: hidden; box-shadow: 0 1px 4px rgba(30,42,40,.05);
+    }
+    .section-card-header {
+      padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.625rem;
+    }
+    .section-card-header i { font-size: 1rem; color: var(--teal); }
+    .section-card-title { font-size: 0.875rem; font-weight: 600; color: var(--charcoal); }
+    .section-card-body { padding: 1.25rem; }
+
+    /* ── Calendar ── */
+    .cal-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .cal-month {
+      font-size: 0.9375rem; font-weight: 600; color: var(--charcoal);
+    }
+    .cal-nav-btn {
+      width: 2rem; height: 2rem; border-radius: 50%; border: 1px solid var(--border);
+      background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: var(--charcoal-mid); font-size: 0.875rem; transition: background 150ms, border-color 150ms;
+    }
+    .cal-nav-btn:hover { background: var(--teal-pale); border-color: var(--teal-light); }
+
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.25rem; }
+    .cal-day-name {
+      text-align: center; font-size: 0.6875rem; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.05em; padding: 0.375rem 0;
+    }
+    .cal-day {
+      text-align: center; padding: 0.5rem 0.25rem; border-radius: 0.5rem;
+      font-size: 0.875rem; cursor: pointer; color: var(--charcoal);
+      transition: background 150ms, color 150ms;
+      border: 1px solid transparent;
+    }
+    .cal-day:hover:not(.disabled):not(.selected) { background: var(--teal-pale); }
+    .cal-day.other-month { color: var(--border); pointer-events: none; }
+    .cal-day.disabled { color: var(--border); pointer-events: none; }
+    .cal-day.today { border-color: var(--teal-light); font-weight: 600; }
+    .cal-day.selected {
+      background: var(--teal); color: #fff; font-weight: 600;
+      box-shadow: 0 2px 8px rgba(58,155,142,.3);
+    }
+    .cal-day.has-slots::after {
+      content: '';
+      display: block;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--teal);
+      margin: 2px auto 0;
+    }
+    .cal-day.selected::after { background: rgba(255,255,255,.6); }
+    .cal-day.disabled::after { display: none; }
+
+    /* ── Time slots ── */
+    .time-section { margin-top: 0; }
+    .time-section-label {
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--muted); margin-bottom: 0.625rem;
+    }
+    .time-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .time-slot {
+      padding: 0.5rem 0.25rem; text-align: center; border-radius: 0.5rem;
+      border: 1px solid var(--border); background: #fff; font-size: 0.8125rem;
+      color: var(--charcoal); cursor: pointer;
+      transition: background 150ms, border-color 150ms, color 150ms;
+      font-family: inherit;
+    }
+    .time-slot:hover:not(.unavailable):not(.selected) {
+      background: var(--teal-pale); border-color: var(--teal-light);
+    }
+    .time-slot.selected {
+      background: var(--teal); border-color: var(--teal); color: #fff; font-weight: 600;
+      box-shadow: 0 2px 8px rgba(58,155,142,.25);
+    }
+    .time-slot.unavailable {
+      background: var(--bg); color: var(--border); border-color: var(--border); cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    /* ── Summary panel ── */
+    .summary-stack { display: flex; flex-direction: column; gap: 0.875rem; }
+
+    .summary-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 0.875rem;
+      overflow: hidden; box-shadow: 0 1px 4px rgba(30,42,40,.05);
+    }
+    .summary-header {
+      padding: 0.75rem 1rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .summary-header i { font-size: 0.9375rem; color: var(--teal); }
+    .summary-title { font-size: 0.8125rem; font-weight: 600; color: var(--charcoal); }
+    .summary-body { padding: 0.875rem 1rem; }
+
+    .selected-date-display {
+      display: flex; flex-direction: column; gap: 0.25rem;
+    }
+    .selected-date-main {
+      font-size: 1rem; font-weight: 700; color: var(--charcoal);
+      font-family: 'Fraunces', serif;
+    }
+    .selected-date-sub { font-size: 0.75rem; color: var(--muted); }
+
+    .duration-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.375rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8125rem;
+    }
+    .duration-row:last-child { border-bottom: none; }
+    .duration-service { color: var(--charcoal-mid); }
+    .duration-time { font-weight: 600; color: var(--charcoal); }
+
+    .empty-hint {
+      font-size: 0.8125rem; color: var(--muted); text-align: center; padding: 0.75rem 0;
+    }
+    .empty-hint i { display: block; font-size: 1.25rem; margin-bottom: 0.375rem; opacity: .4; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-top">
+      <span class="company-name">Studio 4 Hair Salon</span>
+      <div class="header-right">
+        <span class="welcome-text">Welcome back, <strong>Apple</strong>!</span>
+        <nav class="header-nav">
+          <a href="#">My Profile</a>
+          <a href="#">My Bookings</a>
+          <a href="#">My Invoices</a>
+        </nav>
+      </div>
+    </div>
+    <div class="header-bottom">
+      <span class="location-text">Shop 105, The Plaza, Palmerston North</span>
+      <button class="change-link">Change location</button>
+    </div>
+  </header>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <span class="page-title">Select Date &amp; Time</span>
+    <div class="toolbar-actions">
+      <button class="btn-back" onclick="window.location='booking-form-review.html'">
+        <i class="ph-bold ph-arrow-left" style="font-size:.875rem;"></i> Back
+      </button>
+      <button class="btn-continue" id="continue-btn" disabled onclick="window.location='booking-form-specialists.html'">
+        Continue <i class="ph-bold ph-arrow-right" style="font-size:.875rem;"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content-area">
+
+    <!-- Left: Calendar + Time slots -->
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+
+      <!-- Calendar -->
+      <div class="section-card">
+        <div class="section-card-header">
+          <i class="ph ph-calendar"></i>
+          <span class="section-card-title">Choose a date</span>
+        </div>
+        <div class="section-card-body">
+          <div class="cal-nav">
+            <button class="cal-nav-btn" onclick="changeMonth(-1)"><i class="ph-bold ph-caret-left"></i></button>
+            <span class="cal-month" id="cal-month-label"></span>
+            <button class="cal-nav-btn" onclick="changeMonth(1)"><i class="ph-bold ph-caret-right"></i></button>
+          </div>
+          <div class="cal-grid" id="cal-grid">
+            <div class="cal-day-name">Su</div>
+            <div class="cal-day-name">Mo</div>
+            <div class="cal-day-name">Tu</div>
+            <div class="cal-day-name">We</div>
+            <div class="cal-day-name">Th</div>
+            <div class="cal-day-name">Fr</div>
+            <div class="cal-day-name">Sa</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Time slots (shown after a date is selected) -->
+      <div class="section-card" id="time-card" style="display:none;">
+        <div class="section-card-header">
+          <i class="ph ph-clock"></i>
+          <span class="section-card-title">Choose a time</span>
+          <span style="margin-left:auto;font-size:0.75rem;color:var(--muted);" id="time-card-date"></span>
+        </div>
+        <div class="section-card-body">
+          <div class="time-section-label">Morning</div>
+          <div class="time-grid" id="slots-morning"></div>
+          <div class="time-section-label">Afternoon</div>
+          <div class="time-grid" id="slots-afternoon"></div>
+          <div class="time-section-label">Evening</div>
+          <div class="time-grid" id="slots-evening"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right: Summary -->
+    <div class="summary-stack">
+
+      <!-- Selected datetime -->
+      <div class="summary-card">
+        <div class="summary-header">
+          <i class="ph ph-calendar-check"></i>
+          <span class="summary-title">Your selection</span>
+        </div>
+        <div class="summary-body">
+          <div id="selection-empty" class="empty-hint">
+            <i class="ph ph-calendar-blank"></i>
+            Pick a date and time to continue
+          </div>
+          <div id="selection-filled" style="display:none;">
+            <div class="selected-date-display">
+              <span class="selected-date-main" id="sel-date-main"></span>
+              <span class="selected-date-sub" id="sel-date-sub"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Appointment duration breakdown -->
+      <div class="summary-card">
+        <div class="summary-header">
+          <i class="ph ph-hourglass"></i>
+          <span class="summary-title">Total duration</span>
+        </div>
+        <div class="summary-body">
+          <div class="duration-row"><span class="duration-service">Under 16 years old #1</span><span class="duration-time">30 min</span></div>
+          <div class="duration-row"><span class="duration-service">Hard Massage 5</span><span class="duration-time">60 min</span></div>
+          <div class="duration-row" style="border-top:1px solid var(--border);margin-top:.375rem;padding-top:.625rem;">
+            <span class="duration-service" style="font-weight:600;color:var(--charcoal);">Total</span>
+            <span class="duration-time">1 hr 30 min</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /content-area -->
+
+  <script>
+    const today = new Date(2026, 3, 4); // April 4 2026 (month is 0-indexed)
+    let currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    let selectedDate = null;
+    let selectedSlot = null;
+
+    // Days with some availability (relative offsets from today)
+    const availableDays = new Set([5,6,7,8,10,11,12,13,14,15,17,18,19,20,21,22]);
+
+    const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const DAYS = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+    function renderCalendar() {
+      document.getElementById('cal-month-label').textContent =
+        MONTHS[currentMonth.getMonth()] + ' ' + currentMonth.getFullYear();
+
+      const grid = document.getElementById('cal-grid');
+      // Remove all day cells (keep the 7 header cells)
+      const headers = Array.from(grid.querySelectorAll('.cal-day-name'));
+      grid.innerHTML = '';
+      headers.forEach(h => grid.appendChild(h));
+
+      const firstDay = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1).getDay();
+      const daysInMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate();
+      const daysInPrevMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 0).getDate();
+
+      // Prev month padding
+      for (let i = firstDay - 1; i >= 0; i--) {
+        const el = document.createElement('div');
+        el.className = 'cal-day other-month';
+        el.textContent = daysInPrevMonth - i;
+        grid.appendChild(el);
+      }
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const el = document.createElement('div');
+        el.className = 'cal-day';
+        el.textContent = d;
+
+        const thisDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), d);
+        const diffDays = Math.round((thisDate - today) / 86400000);
+
+        if (thisDate < today) {
+          el.classList.add('disabled');
+        } else {
+          if (availableDays.has(diffDays)) el.classList.add('has-slots');
+          else el.classList.add('disabled');
+        }
+
+        if (thisDate.toDateString() === today.toDateString()) el.classList.add('today');
+
+        if (selectedDate && thisDate.toDateString() === selectedDate.toDateString()) {
+          el.classList.add('selected');
+        }
+
+        el.onclick = () => selectDate(thisDate, el);
+        grid.appendChild(el);
+      }
+
+      // Next month padding to fill grid
+      const total = firstDay + daysInMonth;
+      const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
+      for (let d = 1; d <= remaining; d++) {
+        const el = document.createElement('div');
+        el.className = 'cal-day other-month';
+        el.textContent = d;
+        grid.appendChild(el);
+      }
+    }
+
+    function changeMonth(dir) {
+      currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + dir, 1);
+      renderCalendar();
+    }
+
+    function selectDate(date, el) {
+      if (el.classList.contains('disabled')) return;
+      selectedDate = date;
+      selectedSlot = null;
+      document.getElementById('continue-btn').disabled = true;
+      renderCalendar();
+      renderTimeSlots(date);
+      updateSummary();
+    }
+
+    function renderTimeSlots(date) {
+      const card = document.getElementById('time-card');
+      card.style.display = '';
+      document.getElementById('time-card-date').textContent =
+        date.toLocaleDateString('en-NZ', { weekday:'short', month:'short', day:'numeric' });
+
+      const morning   = ['8:00 AM','8:30 AM','9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM'];
+      const afternoon = ['12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM','5:00 PM','5:30 PM'];
+      const evening   = ['6:00 PM','6:30 PM','7:00 PM','7:30 PM'];
+
+      // Pseudo-random unavailability based on date
+      const seed = date.getDate();
+      const unavail = new Set([seed % 8, (seed + 2) % 8, (seed * 3) % 12, (seed + 5) % 12]);
+
+      fillSlots('slots-morning',   morning,   unavail, 0);
+      fillSlots('slots-afternoon', afternoon, unavail, 8);
+      fillSlots('slots-evening',   evening,   new Set([1, 3]), 0);
+    }
+
+    function fillSlots(containerId, slots, unavail, offset) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      slots.forEach((slot, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'time-slot';
+        btn.textContent = slot;
+        btn.dataset.slot = slot;
+        if (unavail.has(i + offset)) {
+          btn.classList.add('unavailable');
+          btn.disabled = true;
+        }
+        if (selectedSlot === slot) btn.classList.add('selected');
+        btn.onclick = () => selectSlot(slot);
+        container.appendChild(btn);
+      });
+    }
+
+    function selectSlot(slot) {
+      selectedSlot = slot;
+      document.querySelectorAll('.time-slot').forEach(b => {
+        b.classList.toggle('selected', b.dataset.slot === slot);
+      });
+      document.getElementById('continue-btn').disabled = false;
+      updateSummary();
+    }
+
+    function updateSummary() {
+      const empty  = document.getElementById('selection-empty');
+      const filled = document.getElementById('selection-filled');
+      if (!selectedDate || !selectedSlot) {
+        empty.style.display = '';
+        filled.style.display = 'none';
+        return;
+      }
+      empty.style.display = 'none';
+      filled.style.display = '';
+      document.getElementById('sel-date-main').textContent =
+        selectedDate.toLocaleDateString('en-NZ', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+      document.getElementById('sel-date-sub').textContent = selectedSlot + ' · Est. end 4:00 PM';
+    }
+
+    renderCalendar();
+  </script>
+</body>
+</html>
